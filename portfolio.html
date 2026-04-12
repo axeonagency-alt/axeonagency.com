@@ -1,0 +1,3362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Axeon</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --accent: #1e3a8a;
+      --blue: #2563eb;
+
+      --white: #ffffff;
+      --dark: #050b1e;
+      --black: #000000;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html,
+    body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f4f8;
+      color: #0a1025;
+    }
+
+    /* ── HERO HEADLINE SECTION ── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 140px;
+      padding-bottom: 60px;
+      animation: fadeInUp 1s ease 0.2s backwards;
+    }
+
+    .headline {
+      font-size: 72px;  /* Reduced from 100px */
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -2px; /* Adjusted spacing for smaller text */
+      margin-bottom: 0px;
+      color: var(--dark);
+    } 
+          /* <-- We needed this closing bracket right here! */
+
+    .hero-sub {
+      font-size: 1.25rem; /* Reduced for a standard subheadline size */
+      color: rgba(10, 16, 37, 0.6); 
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-top: 12px;
+      animation: fadeInUp 1s ease 0.4s backwards; 
+    }
+
+
+    @media (max-width: 768px) {
+      .hero-sub {
+        font-size: 1.4rem; /* Mobile size pumped up too */
+        margin-top: 12px;
+      }
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, #0b34a6 0%, #0b34a6 25%, #6091ff 50%, #0b34a6 75%, #0b34a6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shine 5s linear infinite;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shine {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .headline {
+        font-size: 64px;
+        letter-spacing: -2px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .headline {
+        font-size: 46px;
+        letter-spacing: -1.5px;
+      }
+
+      .hero {
+        padding-top: 80px;
+      }
+    }
+
+    /* ── FILTER TABS ── */
+    .pf-tabs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      padding: 60px 5vw 40px;
+      flex-wrap: wrap;
+    }
+
+    .pf-tab {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 9px 22px;
+      border-radius: 50px;
+      cursor: pointer;
+      border: 1px solid rgba(30, 58, 138, 0.18);
+      background: rgba(255, 255, 255, 0.7);
+      color: rgba(10, 16, 37, 0.55);
+      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      backdrop-filter: blur(8px);
+    }
+
+    .pf-tab:hover {
+      background: #fff;
+      color: var(--blue);
+      border-color: rgba(37, 99, 235, 0.35);
+    }
+
+    .pf-tab.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+    }
+
+    /* ── GRID ── */
+    .pf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      padding: 0 3px 3px;
+    }
+
+    .pf-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #111;
+      aspect-ratio: 4/3;
+      transition: opacity 0.4s ease;
+    }
+
+    .pf-card.hidden {
+      display: none;
+    }
+
+    /* image */
+    .pf-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
+      filter: brightness(0.85) saturate(1.1);
+    }
+
+    .pf-card:hover .pf-card-img {
+      transform: scale(1.06);
+      filter: brightness(0.6) saturate(1.2);
+    }
+
+    /* overlay */
+    .pf-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+    }
+
+    .pf-card:hover .pf-card-overlay {
+      opacity: 1;
+    }
+
+    /* always visible bottom strip */
+    .pf-card-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 24px 18px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .pf-card-industry {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .pf-card-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    /* hover overlay content */
+    .pf-card-hover-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pf-card-hover-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .pf-card-hover-desc {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .pf-card-hover-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 7px 16px;
+      border-radius: 50px;
+      background: rgba(37, 99, 235, 0.35);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .pf-card:hover .pf-card-hover-btn {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    /* ── FEATURED CARD (large) ── */
+    .pf-card.featured {
+      grid-column: span 2;
+      aspect-ratio: unset;
+      height: 480px;
+    }
+
+    .pf-card.featured .pf-card-name {
+      font-size: 1.5rem;
+    }
+
+    .pf-card.featured .pf-card-hover-name {
+      font-size: 1.8rem;
+    }
+
+    .pf-card.featured .pf-card-hover-desc {
+      font-size: 0.85rem;
+    }
+
+    /* ── FULLSCREEN MODAL ── */
+    .pf-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      overflow-y: auto;
+    }
+
+    .pf-modal.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 28px;
+      right: 32px;
+      z-index: 10000;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.1);
+    }
+
+    /* modal hero image */
+    .modal-hero {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      overflow: hidden;
+    }
+
+    .modal-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      filter: brightness(0.5);
+      transform: scale(1.03);
+      transition: transform 8s ease;
+    }
+
+    .pf-modal.open .modal-hero-img {
+      transform: scale(1);
+    }
+
+    .modal-hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, #000 100%);
+    }
+
+    .modal-hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 60px 8vw 50px;
+    }
+
+    .modal-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-tag::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--blue);
+    }
+
+    .modal-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .modal-subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    /* modal body */
+    .modal-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 8vw 120px;
+    }
+
+    /* results grid */
+    .modal-results {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 80px;
+    }
+
+    .modal-result {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 32px 28px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .modal-result:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .result-big {
+      font-family: 'Inter', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .result-big em {
+      font-style: normal;
+      color: var(--blue);
+    }
+
+    .result-small {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+      font-weight: 500;
+    }
+
+    /* two col layout */
+    .modal-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
+    }
+
+    .modal-col-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-col-label::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--blue);
+    }
+
+    .modal-col h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .modal-col p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 14px;
+    }
+
+    .modal-deliverables {
+      list-style: none;
+    }
+
+    .modal-deliverables li {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .modal-deliverables li::before {
+      content: '→';
+      color: var(--blue);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* screen mockup inside modal */
+    .modal-screens {
+      position: relative;
+      width: 100%;
+      height: 440px;
+      margin-bottom: 80px;
+    }
+
+    .modal-laptop {
+      position: absolute;
+      width: 78%;
+      top: 0;
+      left: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 60px 120px rgba(0, 0, 0, 0.8), 0 0 60px rgba(37, 99, 235, 0.06);
+    }
+
+    .modal-browser-bar {
+      height: 28px;
+      background: #0d0d1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 12px;
+    }
+
+    .bd {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    .bd-r {
+      background: #ff5f57;
+    }
+
+    .bd-y {
+      background: #febc2e;
+    }
+
+    .bd-g {
+      background: #28c840;
+    }
+
+    .modal-url {
+      flex: 1;
+      margin: 0 10px;
+      height: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+      font-size: 6.5px;
+      color: rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      letter-spacing: 0.03em;
+    }
+
+    .modal-screen-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .modal-phone {
+      position: absolute;
+      width: 19%;
+      right: 0;
+      bottom: 0;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
+      background: #08080f;
+      z-index: 2;
+    }
+
+    .modal-phone-notch {
+      height: 14px;
+      background: #04040a;
+      width: 40%;
+      margin: 0 auto 3px;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .modal-phone-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* CTA inside modal */
+    .modal-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 48px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      gap: 2rem;
+    }
+
+    .modal-cta-text h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .modal-cta-text p {
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 0.88rem;
+      font-weight: 300;
+    }
+
+    .modal-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--blue);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.25s, box-shadow 0.25s;
+      flex-shrink: 0;
+    }
+
+    .modal-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.4);
+    }
+
+    /* ── PREMIUM MODAL DETAILS (REPLACES EMOJIS) ── */
+    .design-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 56px;
+    }
+    .design-highlight {
+      background: rgba(255,255,255,0.02);
+      padding: 32px 28px;
+      transition: background 0.3s;
+    }
+    .design-highlight:hover { background: rgba(255,255,255,0.04); }
+    
+    .premium-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.1) 0%, rgba(37,99,235,0.02) 100%);
+      border: 1px solid rgba(37,99,235,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .premium-icon-box::before {
+      content: '';
+      position: absolute;
+      width: 150%; height: 150%;
+      background: radial-gradient(circle at center, rgba(37,99,235,0.15) 0%, transparent 60%);
+      top: -25%; left: -25%;
+    }
+    .premium-icon-box svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--blue);
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      position: relative;
+      z-index: 2;
+    }
+
+    .dh-label {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--blue); font-weight: 700; margin-bottom: 8px;
+    }
+    .dh-title {
+      font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.2;
+    }
+    .dh-desc {
+      font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.65; font-weight: 300;
+    }
+
+    /* feature list */
+    .feature-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 56px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .feature-list li {
+      padding: 20px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-right: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: flex-start; gap: 18px;
+      background: rgba(255,255,255,0.015);
+      transition: background 0.25s;
+    }
+    .feature-list li:hover { background: rgba(255,255,255,0.035); }
+    .feature-list li:nth-child(even) { border-right: none; }
+    
+    .feature-list .premium-icon-box {
+      width: 40px; height: 40px; margin-bottom: 0; flex-shrink: 0;
+    }
+    .feature-list .premium-icon-box svg {
+      width: 18px; height: 18px;
+    }
+
+    .feature-list .fi-body { margin-top: 2px;}
+    .feature-list .fi-title {
+      font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 6px;
+    }
+    .feature-list .fi-desc {
+      font-size: 0.77rem; color: rgba(255,255,255,0.38); line-height: 1.55; font-weight: 300;
+    }
+
+    /* live link */
+    .modal-live-link {
+      display: flex; align-items: center; gap: 24px;
+      padding: 32px 40px;
+      background: rgba(37,99,235,0.07);
+      border: 1px solid rgba(37,99,235,0.2);
+      border-radius: 16px;
+      margin-bottom: 56px;
+    }
+    .modal-live-link .mll-icon {
+      width: 50px; height: 50px; flex-shrink: 0;
+      background: rgba(37,99,235,0.1); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(37,99,235,0.3);
+    }
+    .modal-live-link .mll-icon svg { width:20px; height:20px; stroke:var(--blue); fill:none; stroke-width: 2;}
+    .modal-live-link .mll-body { flex: 1; }
+    .modal-live-link .mll-label {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(37,99,235,0.8); font-weight: 700; margin-bottom: 4px;
+    }
+    .modal-live-link .mll-text {
+      font-size: 1rem; font-weight: 600; color: #fff;
+    }
+    .modal-live-link .mll-sub {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 2px;
+    }
+    .modal-live-link a.mll-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff;
+      padding: 12px 24px; border-radius: 50px;
+      font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; white-space: nowrap;
+      transition: transform 0.25s, box-shadow 0.25s; flex-shrink: 0;
+    }
+    .modal-live-link a.mll-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(37,99,235,0.45);
+    }
+    
+    @media(max-width:900px) {
+      .design-highlights { grid-template-columns: 1fr; }
+      .feature-list { grid-template-columns: 1fr; }
+      .feature-list li { border-right: none !important; }
+    }
+
+    /* ── MODAL MOBILE FIXES ── */
+    /* ── COMING SOON MODAL: BUTTON FIX ── */
+    #modal-comingsoon .modal-cta-btn {
+      flex-shrink: 1;
+      white-space: normal;
+      min-width: 120px;
+      text-align: center;
+      justify-content: center;
+    }
+
+    @media(max-width: 600px) {
+      .modal-body { padding: 40px 5vw 80px; }
+      .modal-hero-content { padding: 40px 5vw 30px; }
+      .modal-hero { min-height: 380px; height: 55vh; }
+
+      /* Fix the live link banner - stack vertically */
+      .modal-live-link {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 20px;
+        gap: 16px;
+      }
+      .modal-live-link a.mll-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Fix the modal CTA strip */
+      .modal-cta {
+        padding: 28px 24px;
+        flex-direction: column;
+        text-align: center;
+      }
+      .modal-cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Fix results grid */
+      .modal-results {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+
+
+    /* ── TRANSITIONS ── */
+    .pf-card {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: cardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes cardIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .pf-card:nth-child(1) {
+      animation-delay: 0.05s;
+    }
+
+    .pf-card:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .pf-card:nth-child(3) {
+      animation-delay: 0.15s;
+    }
+
+    .pf-card:nth-child(4) {
+      animation-delay: 0.2s;
+    }
+
+    .pf-card:nth-child(5) {
+      animation-delay: 0.25s;
+    }
+
+    .pf-card:nth-child(6) {
+      animation-delay: 0.3s;
+    }
+
+    .pf-card:nth-child(7) {
+      animation-delay: 0.35s;
+    }
+
+    /* modal content fade */
+    .modal-body>* {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .pf-modal.open .modal-body>* {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pf-modal.open .modal-body>*:nth-child(1) {
+      transition-delay: 0.15s;
+    }
+
+    .pf-modal.open .modal-body>*:nth-child(2) {
+      transition-delay: 0.25s;
+    }
+
+    .pf-modal.open .modal-body>*:nth-child(3) {
+      transition-delay: 0.35s;
+    }
+
+    .pf-modal.open .modal-body>*:nth-child(4) {
+      transition-delay: 0.45s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px) {
+      .pf-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pf-card.featured {
+        grid-column: span 2;
+        height: 360px;
+      }
+
+      .modal-results {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .modal-two-col {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media(max-width:600px) {
+      .pf-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pf-card.featured {
+        grid-column: span 1;
+        height: 300px;
+      }
+
+      .modal-phone {
+        display: none;
+      }
+
+      .modal-laptop {
+        width: 100%;
+        position: relative;
+      }
+
+      .modal-screens {
+        height: auto;
+      }
+
+      .modal-cta {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .modal-results {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .modal-title {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* ── WE SERVE MORE INDUSTRIES BANNER ── */
+    .more-industries {
+      margin: 80px auto 60px;
+      padding: 48px 56px;
+      /* Dark premium background matching your "Coming Soon" modal */
+      background: linear-gradient(135deg, #050b1e 0%, #030612 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      width: 92%;
+      gap: 40px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient glowing blue orb inside the banner */
+    .more-industries::before {
+      content: '';
+      position: absolute;
+      width: 40vw;
+      height: 40vw;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+      top: -20vw;
+      right: -10vw;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(50px);
+    }
+
+    .more-industries-text {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .more-industries-text h3 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .more-industries-text h3 span {
+      background: linear-gradient(90deg, #6091ff 0%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .more-industries-text p {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 300;
+      max-width: 420px;
+    }
+
+    .industries-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 550px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Glassmorphism interactive pills */
+    .ind-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: default;
+      backdrop-filter: blur(8px);
+    }
+
+    .ind-pill:hover {
+      background: rgba(37, 99, 235, 0.15);
+      border-color: rgba(37, 99, 235, 0.3);
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+    }
+
+    .ind-pill.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+
+    .ind-pill.primary:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.3);
+    }
+
+    /* Responsive adjustments */
+    @media(max-width: 900px) {
+      .more-industries {
+        flex-direction: column;
+        padding: 40px 32px;
+      }
+
+      .more-industries-text h3 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media(max-width: 600px) {
+      .more-industries {
+        margin: 60px auto;
+        padding: 32px 24px;
+        width: 95%;
+      }
+
+      .more-industries-text p {
+        font-size: 0.9rem;
+      }
+
+      .more-industries::before {
+        opacity: 0.5;
+        /* Reduce glow size slightly on mobile */
+      }
+    }
+
+
+    /* ── DYNAMIC INDUSTRY TEXT BOX ── */
+    .industry-text-box {
+      position: absolute;
+      /* Size and position are perfectly locked by JS to match your cards */
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a1128 0%, #050b1e 100%);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: 12px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+      z-index: 5;
+      /* CHANGE HERE: from opacity/pointer-events to this: */
+      opacity: 0; 
+      visibility: hidden; 
+    }
+
+    .industry-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .industry-title::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--blue);
+    }
+    
+    .industry-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+
+    .industry-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .industry-bullets li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    .industry-bullets li span {
+      color: #fff;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .industry-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      top: 2px;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .industry-cta-btn {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+      align-self: flex-start;
+    }
+
+    .industry-cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+    }
+
+        /* Desktop text boxes hidden from mobile */
+    @media (min-width: 1024px) {
+      /* These are managed by GSAP - nothing needed here */
+    }
+    @media (max-width: 1023px) {
+      .industry-text-box {
+        display: none !important; /* GSAP boxes always hidden on mobile */
+      }
+    }
+
+    /* ── MOBILE INDUSTRY BOTTOM SHEET ── */
+    .mobile-industry-sheet {
+      display: none; /* Hidden on desktop */
+    }
+
+    @media (max-width: 1023px) {
+      .mobile-industry-sheet {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 8888;
+        background: linear-gradient(160deg, #0d1a35 0%, #050b1e 100%);
+        border-top: 1px solid rgba(37, 99, 235, 0.3);
+        border-radius: 24px 24px 0 0;
+        padding: 28px 24px 40px;
+        box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5);
+        transform: translateY(110%);
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        max-height: 75vh;
+        overflow-y: auto;
+      }
+
+      .mobile-industry-sheet.active {
+        transform: translateY(0);
+      }
+
+      /* Drag handle */
+      .mobile-sheet-handle {
+        width: 40px;
+        height: 4px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 2px;
+        margin: 0 auto 20px;
+      }
+
+      .mobile-sheet-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+      }
+
+      .mobile-sheet-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 8887;
+        backdrop-filter: blur(3px);
+      }
+      .mobile-sheet-overlay.active { display: block; }
+    }
+
+
+    /* ── GLOBAL PREMIUM CTA STRIP ── */
+    .global-cta-wrapper {
+      max-width: 1200px;
+      width: 92%;
+      margin: 0 auto 100px; /* Spacing before footer/modals */
+    }
+
+    .global-cta-strip {
+      padding: 56px 64px;
+      background: linear-gradient(135deg, #0a1128 0%, #050b1e 100%);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient blue glow inside the box */
+    .global-cta-strip::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(40px);
+      z-index: 0;
+    }
+
+    .global-cta-text {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+    }
+
+    .global-cta-text h3 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .global-cta-text h3 span {
+      background: linear-gradient(90deg, #6091ff 0%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .global-cta-text p {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* Premium solid CTA button */
+    .global-cta-btn {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--blue);
+      color: #fff;
+      padding: 18px 36px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      flex-shrink: 0;
+    }
+
+    .global-cta-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Mobile scaling */
+    @media(max-width: 900px) {
+      .global-cta-strip {
+        flex-direction: column;
+        text-align: left;
+        align-items: flex-start;
+        padding: 40px 32px;
+      }
+      .global-cta-text h3 {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media(max-width: 600px) {
+      .global-cta-wrapper {
+        width: 95%;
+        margin-bottom: 60px;
+      }
+      .global-cta-strip {
+        text-align: center;
+        align-items: center;
+        padding: 40px 24px;
+      }
+      .global-cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* ── HERO CTA BUTTONS ── */
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+      /* Staggered animation to fade in right after the subheadline */
+      animation: fadeInUp 1s ease 0.6s backwards;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;          /* Reduced gap from 12px */
+      padding: 12px 28px; /* Greatly reduced padding height and width */
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem; /* Slightly smaller text inside buttons */
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+
+    /* Primary Button: Book Strategy Call */
+    .hero-btn-primary {
+      background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+      color: #fff;
+      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    }
+
+    /* Secondary Button: WhatsApp (Original Green) */
+    .hero-btn-secondary {
+      background: #25D366; /* Original WhatsApp Green */
+      color: #ffffff;
+      border: 1px solid #20b055;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.25);
+    }
+
+    .hero-btn-secondary:hover {
+      transform: translateY(-4px);
+      background: #20b055; /* Slightly darker green on hover */
+      border-color: #128C7E;
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.45);
+    }
+
+    /* WhatsApp icon SVG style */
+    .hero-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+    
+    /* Mobile scaling */
+    @media (max-width: 600px) {
+      .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 24px;
+        gap: 16px;
+      }
+      .hero-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+
+    /* ── PREMIUM SCROLLING SCREENSHOT GALLERY ── */
+    .premium-gallery-container {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 80px;
+      padding: 40px 0 60px; /* Space for the pop-up hover effect */
+      position: relative;
+      display: flex; /* Aligns the two tracks perfectly side-by-side */
+    }
+
+    /* Fading black edges for a theater-like entrance and exit */
+    .premium-gallery-container::before,
+    .premium-gallery-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 15vw;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .premium-gallery-container::before {
+      left: 0;
+      background: linear-gradient(to right, #000 0%, transparent 100%);
+    }
+    .premium-gallery-container::after {
+      right: 0;
+      background: linear-gradient(to left, #000 0%, transparent 100%);
+    }
+
+    .premium-marquee-track {
+      display: flex;
+      gap: 40px;
+      /* Crucial: keeps gap identical when the second track loops around */
+      padding-right: 40px; 
+      width: max-content;
+      animation: scrollMarquee 35s linear infinite;
+      align-items: center;
+    }
+
+    /* Beautiful detail: Pauses the moving gallery when they hover to look closer */
+    .premium-gallery-container:hover .premium-marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Image Card Base */
+    .gallery-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+      cursor: pointer;
+      flex-shrink: 0;
+      background: #08080f;
+    }
+
+    /* 🚀 The Premium Pop-Up Effect! */
+    .gallery-card:hover {
+      transform: translateY(-20px) scale(1.02);
+      box-shadow: 0 40px 80px rgba(37, 99, 235, 0.5);
+      border-color: rgba(37, 99, 235, 0.6);
+      z-index: 5;
+    }
+
+    /* Dimensional Styling */
+    .gallery-card.type-desktop {
+      width: 440px;
+      height: 280px;
+    }
+    .gallery-card.type-mobile {
+      width: 190px;
+      height: 380px;
+      border-radius: 20px;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .gallery-browser-bar {
+      height: 24px;
+      background: #0d0d1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 12px;
+    }
+
+    .gallery-browser-bar .bd {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    /* Responsiveness for phones */
+    @media (max-width: 768px) {
+      .gallery-card.type-desktop { width: 300px; height: 190px; }
+      .gallery-card.type-mobile { width: 140px; height: 280px; }
+      .premium-gallery-container::before, .premium-gallery-container::after { width: 50px; }
+    }
+
+  </style>
+
+<!--AUTO GENERATED BY CODVERTER.COM-->
+<script src="scripts.js"></script>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+
+  <!-- ── HERO EXPORTED FROM OUR WORK ── -->
+  <main class="hero">
+    <h1 class="headline">
+      <span class="highlight">Our Work.</span>
+    </h1>
+    <p class="hero-sub">Websites that win the local market.
+    
+    <div class="hero-cta-group">
+      <a href="#contact" class="hero-btn hero-btn-primary">Book a strategy call now →</a>
+      
+      <a href="https://wa.me/919187326401" target="_blank" class="hero-btn hero-btn-secondary">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </main>
+
+
+  <!-- ── PROJECT GRID ── -->
+  <div class="pf-grid" id="pfGrid">
+
+    <!-- 1 — HVAC featured -->
+    <div class="pf-card featured" data-industry="hvac" data-project="desert-shield" style="animation-delay:0.05s">
+      <img class="pf-card-img" src="https://plus.unsplash.com/premium_photo-1664910507863-1787ab023a71?q=80&w=1200&auto=format&fit=crop" alt="Desert Shield HVAC">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(180,50,0,0.18) 0%,transparent 60%);pointer-events:none;"></div>
+      <div class="pf-card-strip">
+        <div class="pf-card-industry">HVAC · Emergency Response</div>
+        <div class="pf-card-name">Desert Shield HVAC</div>
+      </div>
+      <div class="pf-card-overlay">
+        <div class="pf-card-hover-tag">HVAC · High-Converting Website</div>
+        <div class="pf-card-hover-name">Desert Shield HVAC</div>
+        <div class="pf-card-hover-desc">A bold emergency-first website that turns 115°F anxiety into booked calls — sticky CTAs and flat-rate pricing.</div>
+        <div class="pf-card-hover-btn">View Case Study →</div>
+      </div>
+    </div>
+
+    <!-- 2 — Healthcare -->
+    <div class="pf-card" data-industry="health" data-project="comingsoon" style="animation-delay:0.1s">
+      <img class="pf-card-img" src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=800&q=85"
+        alt="Healthcare">
+      <div class="pf-card-strip">
+        <div class="pf-card-industry">Healthcare · Clinic</div>
+        <div class="pf-card-name">VitalCare Clinic</div>
+      </div>
+      <div class="pf-card-overlay">
+        <div class="pf-card-hover-tag">Healthcare · Clinic</div>
+        <div class="pf-card-hover-name">VitalCare Clinic</div>
+        <div class="pf-card-hover-desc">Automate patient bookings, target high-intent acquisition ads, and elevate your clinic's local authority.</div>
+        <div class="pf-card-hover-btn">View Case Study →</div>
+      </div>
+    </div>
+
+    <!-- 3 — Pet Salons -->
+    <div class="pf-card" data-industry="petsalon" data-project="comingsoon" style="animation-delay:0.15s">
+      <img class="pf-card-img" src="https://images.unsplash.com/photo-1625279138876-8910c2af9a30?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="Pet Salon Grooming">
+      <div class="pf-card-strip">
+        <div class="pf-card-industry">Pet Services · Grooming</div>
+        <div class="pf-card-name">Kittie Washie</div>
+      </div>
+      <div class="pf-card-overlay">
+        <div class="pf-card-hover-tag">Pet Services · Local Growth</div>
+        <div class="pf-card-hover-name">Kittie Washie</div>
+        <div class="pf-card-hover-desc">Local SEO + booking automation to ensure you are the #1 choice when owners search for nearby groomers.</div>
+        <div class="pf-card-hover-btn">View Case Study →</div>
+      </div>
+    </div>
+
+
+    <!-- 4 — Plumbers -->
+    <div class="pf-card" data-industry="plumber" data-project="comingsoon" style="animation-delay:0.2s">
+      <img class="pf-card-img" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=85"
+        alt="Plumbing Services">
+      <div class="pf-card-strip">
+        <div class="pf-card-industry">Home Services · Plumbing</div>
+        <div class="pf-card-name">ProPipe Plumbing</div>
+      </div>
+      <div class="pf-card-overlay">
+        <div class="pf-card-hover-tag">Home Services · Emergency</div>
+        <div class="pf-card-hover-name">ProPipe Plumbing</div>
+        <div class="pf-card-hover-desc">Emergency call funnel + Local Service Ads strategy. Tripled emergency dispatch rate.</div>
+        <div class="pf-card-hover-btn">View Case Study →</div>
+      </div>
+    </div>
+
+
+    <!-- 5 — Restaurant featured -->
+    <div class="pf-card featured" data-industry="restaurant" data-project="comingsoon" style="animation-delay:0.25s">
+      <img class="pf-card-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85"
+        alt="Restaurant">
+      <div class="pf-card-strip">
+        <div class="pf-card-industry">Restaurant · Fine Dining</div>
+        <div class="pf-card-name">Ember & Oak</div>
+      </div>
+      <div class="pf-card-overlay">
+        <div class="pf-card-hover-tag">Restaurant · Fine Dining</div>
+        <div class="pf-card-hover-name">Ember & Oak</div>
+        <div class="pf-card-hover-desc">Brand redesign + social content system to capture the culinary experience and turn followers into weekend reservations.</div>
+        <div class="pf-card-hover-btn">View Case Study →</div>
+      </div>
+    </div>
+
+    <!-- 6 — HVAC 2 -->
+    <div class="pf-card" data-industry="hvac" data-project="arctic-air" style="animation-delay:0.3s">
+      <img class="pf-card-img" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=85&auto=format&fit=crop" alt="Arctic Air Premium">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,30,80,0.3) 0%,transparent 60%);pointer-events:none;"></div>
+      <div class="pf-card-strip">
+        <div class="pf-card-industry">HVAC · Luxury Brand</div>
+        <div class="pf-card-name">Arctic Air</div>
+      </div>
+      <div class="pf-card-overlay">
+        <div class="pf-card-hover-tag">HVAC · Luxury Service</div>
+        <div class="pf-card-hover-name">Arctic Air</div>
+        <div class="pf-card-hover-desc">A refined, editorial HVAC brand that commands premium pricing across Arizona through video proof and transparency.</div>
+        <div class="pf-card-hover-btn">View Case Study →</div>
+      </div>
+    </div>
+
+    <!-- 7 — Pet Salons -->
+    <div class="pf-card" data-industry="petsalon" data-project="comingsoon" style="animation-delay:0.15s">
+      <img class="pf-card-img" src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800&q=85"
+        alt="Pet Salon Grooming">
+      <div class="pf-card-strip">
+        <div class="pf-card-industry">Pet Services · Grooming</div>
+        <div class="pf-card-name">Paws & Bubbles</div>
+      </div>
+      <div class="pf-card-overlay">
+        <div class="pf-card-hover-tag">Pet Services · Local Growth</div>
+        <div class="pf-card-hover-name">Paws & Bubbles</div>
+        <div class="pf-card-hover-desc">Dominate local maps and turn website visitors into scheduled grooming appointments seamlessly.</div>
+        <div class="pf-card-hover-btn">View Case Study →</div>
+      </div>
+    </div>
+
+    <!-- 8 — HVAC 3 (Desert Shield 2) -->
+    <div class="pf-card" data-industry="hvac" data-project="desert-shield-2" style="animation-delay:0.4s">
+      <!-- ⚠️ You can replace this image link later to match the new site -->
+      <img class="pf-card-img" src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1920&q=85" alt="Desert Shield HVAC 2">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(180,50,0,0.18) 0%,transparent 60%);pointer-events:none;"></div>
+      <div class="pf-card-strip">
+        <div class="pf-card-industry">HVAC · Emergency Response</div>
+        <div class="pf-card-name">Desert Shield HVAC 2</div>
+      </div>
+      <div class="pf-card-overlay">
+        <div class="pf-card-hover-tag">HVAC · High-Converting Website</div>
+        <div class="pf-card-hover-name">Desert Shield HVAC 2</div>
+        <div class="pf-card-hover-desc">A bold emergency-first website that turns anxiety into booked calls — sticky CTAs and flat-rate pricing.</div>
+        <div class="pf-card-hover-btn">View Case Study →</div>
+      </div>
+    </div>
+
+  </div><!-- /pf-grid -->
+
+  <!-- ── WE SERVE MORE INDUSTRIES BANNER ── -->
+  <div class="more-industries">
+    <div class="more-industries-text">
+      <h3>We serve <span>many more</span> industries →</h3>
+      <p>If your business serves local customers, we can build you a scalable digital presence that dominates your
+        market.</p>
+    </div>
+    <div class="industries-pills">
+      <span class="ind-pill">Electricians</span>
+      <span class="ind-pill">Landscaping</span>
+      <span class="ind-pill">Dental Clinics</span>
+      <span class="ind-pill">Auto Repair</span>
+      <span class="ind-pill">Law Firms</span>
+      <span class="ind-pill">Gyms & Fitness</span>
+      <span class="ind-pill">Roofing</span>
+      <span class="ind-pill">Childcare</span>
+      <span class="ind-pill">Cleaning</span>
+      <span class="ind-pill primary">+ Many More</span>
+    </div>
+  </div>
+
+  <!-- ── GLOBAL CTA STRIP ── -->
+  <div class="global-cta-wrapper">
+    <div class="global-cta-strip">
+      <div class="global-cta-text">
+        <h3>Not in HVAC?<br>We <span>still got you.</span></h3>
+        <p>Whatever your trade, whatever your city — we build sites that dominate local search and convert cold traffic into hot leads.</p>
+      </div>
+      <a href="#contact" class="global-cta-btn">Book a strategy call now →</a>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+     FULLSCREEN MODALS
+══════════════════════════════════════════ -->
+
+    <!-- MODAL: DESERT SHIELD HVAC -->
+  <div class="pf-modal" id="modal-desert-shield">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div class="modal-hero">
+      <img class="modal-hero-img" src="https://plus.unsplash.com/premium_photo-1664910507863-1787ab023a71?q=80&w=1600&auto=format&fit=crop" alt="Desert Shield HVAC">
+      <div class="modal-hero-gradient" style="background:linear-gradient(to bottom,rgba(140,30,0,0.25) 0%,transparent 35%,#000 100%);"></div>
+      <div class="modal-hero-content">
+        <div class="modal-tag">HVAC &amp; Home Services · Phoenix Metro · azhvac.netlify.app</div>
+        <div class="modal-title">Desert Shield<br>HVAC</div>
+        <div class="modal-subtitle">A high-converting emergency-first HVAC website engineered to dominate Phoenix Metro — bold design, zero ambiguity, maximum calls.</div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <!-- Live Link Banner -->
+      <div class="modal-live-link">
+        <div class="mll-icon">
+          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <div class="mll-body">
+          <div class="mll-label">Live Website</div>
+          <div class="mll-text">azhvac.netlify.app</div>
+          <div class="mll-sub">View the full live site — desktop &amp; mobile optimised</div>
+        </div>
+        <a href="https://azhvac.netlify.app/" target="_blank" class="mll-btn">Visit Live Site →</a>
+      </div>
+
+      <!-- Design Highlights -->
+      <div class="design-highlights">
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div class="dh-label">Conversion Design</div>
+          <div class="dh-title">Emergency-First Hero</div>
+          <div class="dh-desc">The homepage opens with a burning urgency bar — "Phoenix Heat Emergency? AC Down?" — ensuring the site captures every person in crisis before they reach for a competitor.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="dh-label">Clear CTA Architecture</div>
+          <div class="dh-title">Sticky Call Bar + Dual CTAs</div>
+          <div class="dh-desc">A persistent golden "CALL 24/7" footer bar follows every scroll on mobile. The hero has both Emergency Repair and Book a Service CTAs capturing all intent.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div class="dh-label">Trust Signals</div>
+          <div class="dh-title">Flat-Rate Pricing + Licensed</div>
+          <div class="dh-desc">ROC License #247891, no-commission technicians, and flat-rate pricing displayed prominently — eliminating every fear a homeowner has before calling.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="dh-label">Social Proof</div>
+          <div class="dh-title">Real Reviews Grid</div>
+          <div class="dh-desc">A 6-card review grid with named Arizona customers, city attribution, and real story snippets. Each review elegantly handles a specific objection.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="dh-label">Revenue Feature</div>
+          <div class="dh-title">$14K Rebate Concierge Section</div>
+          <div class="dh-desc">A full rebate calculator prioritizes Desert Shield as the only company that handles all paperwork — turning an HVAC system into a high-value asset.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M9 6l11 0"/><path d="M9 12l11 0"/><path d="M9 18l11 0"/><path d="M5 6l0 .01"/><path d="M5 12l0 .01"/><path d="M5 18l0 .01"/></svg>
+          </div>
+          <div class="dh-label">Objection Handling</div>
+          <div class="dh-title">Inline FAQ Section</div>
+          <div class="dh-desc">Common HVAC fears handled directly on-page — pricing transparency, no-surprise invoices — removing every barrier between visit and call.</div>
+        </div>
+      </div>
+
+      <!-- ── PREMIUM SCROLLING SCREENSHOT GALLERY ── -->
+      <div class="premium-gallery-container">
+        
+        <!-- TRACK 1: Your first 8 unique image slots -->
+        <div class="premium-marquee-track">
+          
+          <!-- IMAGE 1. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 1 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 1">
+          </div>
+          <!-- IMAGE 1. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 1 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 1">
+          </div>
+
+          <!-- IMAGE 2. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 2 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 2">
+          </div>
+          <!-- IMAGE 2. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 2 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 2">
+          </div>
+
+          <!-- IMAGE 3. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 3 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 3">
+          </div>
+          <!-- IMAGE 3. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 3 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 3">
+          </div>
+
+          <!-- IMAGE 4. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 4 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 4">
+          </div>
+          <!-- IMAGE 4. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 4 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 4">
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TRACK 2: THE DUPLICATE TRACK (INFINITE SCROLL) -->
+        <!-- ⚠️ You must paste the exact same 8 links from -->
+        <!-- Track 1 down here for the loop to be seamless! -->
+        <!-- ============================================== -->
+        <div class="premium-marquee-track">
+          
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 1 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 1">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 1 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 1">
+          </div>
+
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 2 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 2">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 2 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 2">
+          </div>
+
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 3 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 3">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 3 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 3">
+          </div>
+
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 4 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 4">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 4 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 4">
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="modal-two-col">
+        <div class="modal-col">
+          <div class="modal-col-label">Why This Design Wins</div>
+          <h3>Built for the moment panic sets in at 115°F</h3>
+          <p>HVAC customers in Phoenix aren't browsing — they're desperate. The Desert Shield site is engineered for that exact moment: a bold emergency bar, a phone number in 60-point type, and a persistent sticky CTA bar that never lets a panicking homeowner forget they need to call.</p>
+          <p>Every section has one job. The hero drives calls. The trust bar kills doubt. The review grid proves reliability. The rebate section turns a commodity purchase into a value event. There's no noise, no confusion — just a clear path from landing to booked appointment.</p>
+        </div>
+        <div class="modal-col">
+          <div class="modal-col-label">What This Design Delivers</div>
+          <ul class="modal-deliverables">
+            <li>Emergency-first hero with 60-second answer CTA prominently displayed above the fold</li>
+            <li>Sticky mobile call bar — visible on every scroll position, driving inbound calls 24/7</li>
+            <li>Dual CTA buttons (Emergency + Book) matching both urgent and planned customer intent</li>
+            <li>Trust signals: ROC license, no-commission badge, flat-rate pricing — killing purchase fear</li>
+            <li>$14,000 rebate section with APS/SRP/HEAR/IRA breakdown — the highest-value closer on the page</li>
+            <li>6-card review grid with named local customers addressing each common objection</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Feature breakdown -->
+      <ul class="feature-list">
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">Urgency Announcement Bar</div>
+            <div class="fi-desc">Rotating 3-message bar: heat emergency awareness, phone number, ROC license — seen before anything else.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">Mobile-Optimised CTA Flow</div>
+            <div class="fi-desc">One-tap call button, minimal friction booking form, and thumb-friendly navigation converts visitors efficiently.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">"115°F" Brand Positioning</div>
+            <div class="fi-desc">The site uses Arizona-specific heat urgency as a brand anchor — differentiating from generic HVAC competitors.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">Booking Form with Selector</div>
+            <div class="fi-desc">A structured contact form with service type, city, and preferred time slot — capturing high-intent leads flawlessly.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v3A5 5 0 0 1 12 12A5 5 0 0 1 7 7V4Z"/><path d="M7 5H4v2a4 4 0 0 0 4 4"/><path d="M17 5h3v2a4 4 0 0 1-4 4"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">Stats Timeline Banner</div>
+            <div class="fi-desc">Four credibility numbers below the hero — response time, experience, reviews, and rebate total establishing authority.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">No-Surprise Pricing Concept</div>
+            <div class="fi-desc">Service starting prices listed publicly — a bold trust move that pre-qualifies serious customers smoothly.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="modal-cta">
+        <div class="modal-cta-text">
+          <h4>Own an HVAC business?</h4>
+          <p>We build sites that drive emergency calls and booked appointments — not just traffic.</p>
+        </div>
+        <a href="#contact" class="modal-cta-btn">Book a Free Call →</a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <div class="pf-modal" id="modal-health1">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-hero">
+      <img class="modal-hero-img" src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=1600&q=90"
+        alt="VitalCare">
+      <div class="modal-hero-gradient"></div>
+      <div class="modal-hero-content">
+        <div class="modal-tag">Healthcare · Multi-Specialty Clinic</div>
+        <div class="modal-title">VitalCare<br>Clinic</div>
+        <div class="modal-subtitle">A complete digital transformation that turned a quiet clinic into the area's
+          most-booked practice.</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-results">
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Automate</div>
+          <div class="result-small">Patient Bookings</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Dominate</div>
+          <div class="result-small">Local SEO Rankings</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Target</div>
+          <div class="result-small">Acquisition Ads</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Elevate</div>
+          <div class="result-small">Clinic Authority</div>
+        </div>
+      </div>
+
+      <div class="modal-screens">
+        <div class="modal-laptop">
+          <div class="modal-browser-bar">
+            <div class="bd bd-r"></div>
+            <div class="bd bd-y"></div>
+            <div class="bd bd-g"></div>
+            <div class="modal-url">vitalcareclinic.com</div>
+          </div>
+          <img class="modal-screen-img" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1000&q=85"
+            alt="Website">
+        </div>
+        <div class="modal-phone">
+          <div class="modal-phone-notch"></div>
+          <img class="modal-phone-img" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&q=80"
+            alt="Mobile">
+        </div>
+      </div>
+      <div class="modal-two-col">
+        <div class="modal-col">
+          <div class="modal-col-label">The Challenge</div>
+          <h3>Good doctors, terrible online presence</h3>
+          <p>VitalCare had a strong team and loyal patients but an outdated website that actively drove new patients
+            away. They were losing to clinics with inferior care but better digital marketing.</p>
+          <p>They needed a full trust-building system: credible website, strong local SEO, and a steady paid traffic
+            stream — all working together.</p>
+        </div>
+        <div class="modal-col">
+          <div class="modal-col-label">Deliverables</div>
+          <ul class="modal-deliverables">
+            <li>Fully redesigned website with online booking system</li>
+            <li>Local SEO targeting 12 high-intent search terms</li>
+            <li>Meta Ads for new patient acquisition</li>
+            <li>Doctor profile pages optimised for trust signals</li>
+            <li>Monthly health content strategy &amp; blog</li>
+            <li>WhatsApp automation for appointment reminders</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <div class="modal-cta-text">
+          <h4>Running a clinic or practice?</h4>
+          <p>We specialise in healthcare digital marketing. Let's talk.</p>
+        </div>
+        <a href="index.html#contact" class="modal-cta-btn">Book a Free Call →</a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <div class="pf-modal" id="modal-re1">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-hero">
+      <img class="modal-hero-img" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&q=90"
+        alt="Elite Realty">
+      <div class="modal-hero-gradient"></div>
+      <div class="modal-hero-content">
+        <div class="modal-tag">Real Estate · Premium Residential</div>
+        <div class="modal-title">Elite<br>Realty Co.</div>
+        <div class="modal-subtitle">A boutique agency entering the premium segment needed a brand worthy of their
+          listings.</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-results">
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Target</div>
+          <div class="result-small">High-Intent Buyers</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Scale</div>
+          <div class="result-small">Property Showings</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Capture</div>
+          <div class="result-small">Verified Leads</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Position</div>
+          <div class="result-small">Premium Branding</div>
+        </div>
+      </div>
+
+      <div class="modal-screens">
+        <div class="modal-laptop">
+          <div class="modal-browser-bar">
+            <div class="bd bd-r"></div>
+            <div class="bd bd-y"></div>
+            <div class="bd bd-g"></div>
+            <div class="modal-url">eliterealty.in</div>
+          </div>
+          <img class="modal-screen-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1000&q=85"
+            alt="Website">
+        </div>
+        <div class="modal-phone">
+          <div class="modal-phone-notch"></div>
+          <img class="modal-phone-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&q=80"
+            alt="Mobile">
+        </div>
+      </div>
+      <div class="modal-two-col">
+        <div class="modal-col">
+          <div class="modal-col-label">The Challenge</div>
+          <h3>Premium listings, budget brand</h3>
+          <p>Elite Realty was listing luxury properties but their digital brand communicated anything but luxury.
+            Serious buyers weren't converting — the brand wasn't building the trust the price tags demanded.</p>
+          <p>We rebuilt everything from the ground up: identity, website, and a full-funnel paid strategy targeting
+            high-net-worth buyers.</p>
+        </div>
+        <div class="modal-col">
+          <div class="modal-col-label">Deliverables</div>
+          <ul class="modal-deliverables">
+            <li>Full brand identity — logo, palette, typography system</li>
+            <li>Premium property listing website with CRM integration</li>
+            <li>Google &amp; Meta Ads targeting high-intent buyers</li>
+            <li>Video ad creative production for 3 flagship properties</li>
+            <li>WhatsApp automation for instant lead response</li>
+            <li>Monthly analytics &amp; campaign optimisation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <div class="modal-cta-text">
+          <h4>In real estate?</h4>
+          <p>We build premium brands that attract premium clients.</p>
+        </div>
+        <a href="index.html#contact" class="modal-cta-btn">Book a Free Call →</a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <div class="pf-modal" id="modal-ecom1">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-hero">
+      <img class="modal-hero-img" src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1600&q=90"
+        alt="Luxe Label">
+      <div class="modal-hero-gradient"></div>
+      <div class="modal-hero-content">
+        <div class="modal-tag">E-Commerce · Fashion & Lifestyle</div>
+        <div class="modal-title">Luxe Label<br>Store</div>
+        <div class="modal-subtitle">A D2C fashion brand that went from scrappy to scaled — revenue tripled in 90 days.
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-results">
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Convert</div>
+          <div class="result-small">More Traffic</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Optimize</div>
+          <div class="result-small">Full Sales Funnel</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Retain</div>
+          <div class="result-small">Repeat Customers</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Scale</div>
+          <div class="result-small">Ad ROI</div>
+        </div>
+      </div>
+
+      <div class="modal-screens">
+        <div class="modal-laptop">
+          <div class="modal-browser-bar">
+            <div class="bd bd-r"></div>
+            <div class="bd bd-y"></div>
+            <div class="bd bd-g"></div>
+            <div class="modal-url">luxelabelstore.com</div>
+          </div>
+          <img class="modal-screen-img" src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1000&q=85"
+            alt="Website">
+        </div>
+        <div class="modal-phone">
+          <div class="modal-phone-notch"></div>
+          <img class="modal-phone-img" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&q=80"
+            alt="Mobile">
+        </div>
+      </div>
+      <div class="modal-two-col">
+        <div class="modal-col">
+          <div class="modal-col-label">The Challenge</div>
+          <h3>Great product, broken funnel</h3>
+          <p>Luxe Label had a loyal Instagram following but a Shopify store that was bleeding money — poor UX, slow load
+            times, and zero email capture meant most traffic left without buying.</p>
+          <p>We rebuilt the full purchase funnel and launched a systematic Meta Ads strategy to drive qualified traffic
+            at scale.</p>
+        </div>
+        <div class="modal-col">
+          <div class="modal-col-label">Deliverables</div>
+          <ul class="modal-deliverables">
+            <li>Full Shopify store redesign — UX-first, conversion-optimised</li>
+            <li>Meta Ads — TOF/MOF/BOF full-funnel strategy</li>
+            <li>Email flows: welcome, abandoned cart, post-purchase</li>
+            <li>Instagram content strategy — 4 posts/week</li>
+            <li>Influencer collaboration framework</li>
+            <li>Weekly A/B testing on product pages</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <div class="modal-cta-text">
+          <h4>Running an online store?</h4>
+          <p>We fix funnels and scale revenue. Let's audit yours.</p>
+        </div>
+        <a href="index.html#contact" class="modal-cta-btn">Book a Free Call →</a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <div class="pf-modal" id="modal-rest1">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-hero">
+      <img class="modal-hero-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=90"
+        alt="Ember and Oak">
+      <div class="modal-hero-gradient"></div>
+      <div class="modal-hero-content">
+        <div class="modal-tag">Restaurant · Fine Dining</div>
+        <div class="modal-title">Ember<br>&amp; Oak</div>
+        <div class="modal-subtitle">A fine dining restaurant that became the city's most talked-about table —
+          organically.</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-results">
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Refine</div>
+          <div class="result-small">Brand Aesthetics</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Grow</div>
+          <div class="result-small">Audience Volume</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Fill</div>
+          <div class="result-small">Midweek Tables</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Control</div>
+          <div class="result-small">5★ Review System</div>
+        </div>
+      </div>
+
+      <div class="modal-screens">
+        <div class="modal-laptop">
+          <div class="modal-browser-bar">
+            <div class="bd bd-r"></div>
+            <div class="bd bd-y"></div>
+            <div class="bd bd-g"></div>
+            <div class="modal-url">emberandoak.in</div>
+          </div>
+          <img class="modal-screen-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=85"
+            alt="Website">
+        </div>
+        <div class="modal-phone">
+          <div class="modal-phone-notch"></div>
+          <img class="modal-phone-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80"
+            alt="Mobile">
+        </div>
+      </div>
+      <div class="modal-two-col">
+        <div class="modal-col">
+          <div class="modal-col-label">The Challenge</div>
+          <h3>Exceptional food, empty seats midweek</h3>
+          <p>Ember &amp; Oak was thriving on weekends but struggling midweek. Their Instagram had 800 followers and
+            their website looked like it was built in 2014. The brand didn't reflect the quality of the experience.</p>
+          <p>We overhauled the brand, built a content machine, and ran targeted local ads to fill every table, every
+            night.</p>
+        </div>
+        <div class="modal-col">
+          <div class="modal-col-label">Deliverables</div>
+          <ul class="modal-deliverables">
+            <li>Brand identity refresh — photography direction &amp; visual language</li>
+            <li>New website with integrated reservation system</li>
+            <li>Instagram content strategy — 5 posts/week + Reels</li>
+            <li>Google &amp; Zomato review generation system</li>
+            <li>Meta Ads targeting local food enthusiasts</li>
+            <li>Email list build + monthly chef's table newsletter</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <div class="modal-cta-text">
+          <h4>In hospitality or F&amp;B?</h4>
+          <p>We fill seats and build brands that become destinations.</p>
+        </div>
+        <a href="index.html#contact" class="modal-cta-btn">Book a Free Call →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DESERT SHIELD HVAC 2 (AUS HVAC) -->
+  <div class="pf-modal" id="modal-desert-shield-2">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div class="modal-hero">
+      <!-- ⚠️ UPDATE THIS HERO IMAGE LATER -->
+      <img class="modal-hero-img" src="https://plus.unsplash.com/premium_photo-1664910507863-1787ab023a71?q=80&w=1600&auto=format&fit=crop" alt="Desert Shield HVAC 2">
+      <div class="modal-hero-gradient" style="background:linear-gradient(to bottom,rgba(140,30,0,0.25) 0%,transparent 35%,#000 100%);"></div>
+      <div class="modal-hero-content">
+        <div class="modal-tag">HVAC &amp; Home Services · aushvac.netlify.app</div>
+        <div class="modal-title">Desert Shield<br>HVAC 2</div>
+        <div class="modal-subtitle">A high-converting emergency-first HVAC website engineered to dominate — bold design, zero ambiguity, maximum calls.</div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <!-- Live Link Banner -->
+      <div class="modal-live-link">
+        <div class="mll-icon">
+          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <div class="mll-body">
+          <div class="mll-label">Live Website</div>
+          <div class="mll-text">aushvac.netlify.app</div>
+          <div class="mll-sub">View the full live site — desktop &amp; mobile optimised</div>
+        </div>
+        <a href="https://aushvac.netlify.app/" target="_blank" class="mll-btn">Visit Live Site →</a>
+      </div>
+
+      <!-- Design Highlights -->
+      <div class="design-highlights">
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div class="dh-label">Conversion Design</div>
+          <div class="dh-title">Emergency-First Hero</div>
+          <div class="dh-desc">The homepage opens with a burning urgency bar — "Heat Emergency? AC Down?" — ensuring the site captures every person in crisis before they reach for a competitor.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="dh-label">Clear CTA Architecture</div>
+          <div class="dh-title">Sticky Call Bar + Dual CTAs</div>
+          <div class="dh-desc">A persistent golden "CALL 24/7" footer bar follows every scroll on mobile. The hero has both Emergency Repair and Book a Service CTAs capturing all intent.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div class="dh-label">Trust Signals</div>
+          <div class="dh-title">Flat-Rate Pricing + Licensed</div>
+          <div class="dh-desc">ROC License #247891, no-commission technicians, and flat-rate pricing displayed prominently — eliminating every fear a homeowner has before calling.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="dh-label">Social Proof</div>
+          <div class="dh-title">Real Reviews Grid</div>
+          <div class="dh-desc">A 6-card review grid with named customers, city attribution, and real story snippets. Each review elegantly handles a specific objection.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="dh-label">Revenue Feature</div>
+          <div class="dh-title">Rebate Concierge Section</div>
+          <div class="dh-desc">A full rebate calculator prioritizes the company as the only one that handles all paperwork — turning an HVAC system into a high-value asset.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M9 6l11 0"/><path d="M9 12l11 0"/><path d="M9 18l11 0"/><path d="M5 6l0 .01"/><path d="M5 12l0 .01"/><path d="M5 18l0 .01"/></svg>
+          </div>
+          <div class="dh-label">Objection Handling</div>
+          <div class="dh-title">Inline FAQ Section</div>
+          <div class="dh-desc">Common HVAC fears handled directly on-page — pricing transparency, no-surprise invoices — removing every barrier between visit and call.</div>
+        </div>
+      </div>
+
+      <!-- ── PREMIUM SCROLLING SCREENSHOT GALLERY ── -->
+      <div class="premium-gallery-container">
+        
+        <!-- TRACK 1: Your first 8 unique image slots -->
+        <div class="premium-marquee-track">
+          
+          <!-- IMAGE 1. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 1 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 1">
+          </div>
+          <!-- IMAGE 1. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 1 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 1">
+          </div>
+
+          <!-- IMAGE 2. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 2 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 2">
+          </div>
+          <!-- IMAGE 2. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 2 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 2">
+          </div>
+
+          <!-- IMAGE 3. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 3 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 3">
+          </div>
+          <!-- IMAGE 3. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 3 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 3">
+          </div>
+
+          <!-- IMAGE 4. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 4 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 4">
+          </div>
+          <!-- IMAGE 4. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 4 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 4">
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TRACK 2: THE DUPLICATE TRACK (INFINITE SCROLL) -->
+        <!-- ⚠️ You must paste the exact same 8 links from -->
+        <!-- Track 1 down here for the loop to be seamless! -->
+        <!-- ============================================== -->
+        <div class="premium-marquee-track">
+          
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 1 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 1">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 1 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 1">
+          </div>
+
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 2 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 2">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 2 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 2">
+          </div>
+
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 3 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 3">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 3 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 3">
+          </div>
+
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 4 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 4">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 4 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 4">
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- Feature breakdown -->
+      <ul class="feature-list">
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">Urgency Announcement Bar</div>
+            <div class="fi-desc">Rotating 3-message bar: heat emergency awareness, phone number, ROC license — seen before anything else.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">Mobile-Optimised CTA Flow</div>
+            <div class="fi-desc">One-tap call button, minimal friction booking form, and thumb-friendly navigation converts visitors efficiently.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">High Urgency Positioning</div>
+            <div class="fi-desc">The site uses a heat urgency visual as a brand anchor — differentiating from generic HVAC competitors instantly.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">No-Surprise Pricing Concept</div>
+            <div class="fi-desc">Service starting prices listed publicly — a bold trust move that pre-qualifies serious customers intuitively.</div>
+          </div>
+        </li>
+
+      </ul>
+
+      <div class="modal-cta">
+        <div class="modal-cta-text">
+          <h4>Own an HVAC business?</h4>
+          <p>We build sites that drive emergency calls and booked appointments — not just traffic.</p>
+        </div>
+        <a href="#contact" class="modal-cta-btn">Book a Free Call →</a>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- MODAL: ARCTIC AIR -->
+  <div class="pf-modal" id="modal-arctic-air">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div class="modal-hero">
+      <img class="modal-hero-img" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=90&auto=format&fit=crop" alt="Arctic Air HVAC">
+      <div class="modal-hero-gradient" style="background:linear-gradient(to bottom,rgba(5,20,60,0.3) 0%,transparent 35%,#000 100%);"></div>
+      <div class="modal-hero-content">
+        <div class="modal-tag">HVAC &amp; Home Services · Arizona-Wide · hvacaz.netlify.app</div>
+        <div class="modal-title">Arctic Air</div>
+        <div class="modal-subtitle">A premium editorial HVAC brand that earns trust through transparency, proof, and personality — and commands prices no generic competitor can match.</div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <!-- Live Link Banner -->
+      <div class="modal-live-link">
+        <div class="mll-icon">
+          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <div class="mll-body">
+          <div class="mll-label">Live Website</div>
+          <div class="mll-text">hvacaz.netlify.app</div>
+          <div class="mll-sub">View the full live site — desktop &amp; mobile optimised</div>
+        </div>
+        <a href="https://hvacaz.netlify.app/" target="_blank" class="mll-btn">Visit Live Site →</a>
+      </div>
+
+      <!-- Design Highlights -->
+      <div class="design-highlights">
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="6.5"/></svg>
+          </div>
+          <div class="dh-label">Premium Typography</div>
+          <div class="dh-title">"Comfort Redefined"</div>
+          <div class="dh-desc">An editorial serif headline paired with a full-bleed photograph — instantly positioning Arctic Air as a premium service, not a commodity.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </div>
+          <div class="dh-label">Radical Transparency</div>
+          <div class="dh-title">Before/After Video Proof</div>
+          <div class="dh-desc">Every technician records footage of each job. This is featured as a core trust differentiator — letting customers see the work.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+          </div>
+          <div class="dh-label">Interactive Feature</div>
+          <div class="dh-title">Live Comfort Demo Widget</div>
+          <div class="dh-desc">A draggable slider lets visitors experience how the system responds in real time — with estimated monthly savings displayed live.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="dh-label">FAQ System</div>
+          <div class="dh-title">Questions, Answered.</div>
+          <div class="dh-desc">A full FAQ section with an embedded contact card — keeping hesitant prospects on-page and giving them a WhatsApp option instantly.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div class="dh-label">Team Positioning</div>
+          <div class="dh-title">Named Tech Profiles</div>
+          <div class="dh-desc">Each technician has a profile card with photo and certifications. Customers know exactly who is coming — turning a visit into a trusted event.</div>
+        </div>
+        <div class="design-highlight">
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="dh-label">Testimonial Design</div>
+          <div class="dh-title">Story-Based Review Cards</div>
+          <div class="dh-desc">Three-column review cards use full customer stories covering residential and maintenance plan scenarios perfectly targeted.</div>
+        </div>
+      </div>
+
+      <!-- ── PREMIUM SCROLLING SCREENSHOT GALLERY ── -->
+      <div class="premium-gallery-container">
+        
+        <!-- TRACK 1: Your first 8 unique image slots -->
+        <div class="premium-marquee-track">
+          
+          <!-- IMAGE 1. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 1 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 1">
+          </div>
+          <!-- IMAGE 1. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 1 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 1">
+          </div>
+
+          <!-- IMAGE 2. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 2 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 2">
+          </div>
+          <!-- IMAGE 2. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 2 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 2">
+          </div>
+
+          <!-- IMAGE 3. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 3 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 3">
+          </div>
+          <!-- IMAGE 3. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 3 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 3">
+          </div>
+
+          <!-- IMAGE 4. DESKTOP -->
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 4 HERE -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 4">
+          </div>
+          <!-- IMAGE 4. MOBILE -->
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 4 HERE -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 4">
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TRACK 2: THE DUPLICATE TRACK (INFINITE SCROLL) -->
+        <!-- ⚠️ You must paste the exact same 8 links from -->
+        <!-- Track 1 down here for the loop to be seamless! -->
+        <!-- ============================================== -->
+        <div class="premium-marquee-track">
+          
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 1 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 1">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 1 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 1">
+          </div>
+
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 2 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 2">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 2 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 2">
+          </div>
+
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 3 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 3">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 3 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 3">
+          </div>
+
+          <div class="gallery-card type-desktop">
+            <div class="gallery-browser-bar"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div>
+            <!-- 👉 UPLOAD DESKTOP IMAGE 4 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Desktop Screenshot 4">
+          </div>
+          <div class="gallery-card type-mobile">
+            <!-- 👉 UPLOAD MOBILE IMAGE 4 HERE AGAIN -->
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="Mobile Screenshot 4">
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="modal-two-col">
+        <div class="modal-col">
+          <div class="modal-col-label">Why This Design Wins</div>
+          <h3>When trust is the product, the website proves it</h3>
+          <p>Arctic Air's customers aren't choosing on price — they're choosing on confidence. The site is built around a single insight: the thing homeowners fear most about HVAC is not knowing if they're being scammed. Every design decision dismantles that fear.</p>
+          <p>Named technicians, video documentation, upfront quotes, and a 1-year warranty on every job. The editorial design language signals a brand that is serious, accountable, and premium — establishing extreme pricing power seamlessly.</p>
+        </div>
+        <div class="modal-col">
+          <div class="modal-col-label">What This Design Delivers</div>
+          <ul class="modal-deliverables">
+            <li>Editorial serif hero with full-bleed technician photography — premium first impression in under 1 second</li>
+            <li>Dual hero CTAs: "Get a Free Quote" (planned intent) + "Call 24/7" capturing buyer modes</li>
+            <li>Technician profile section with photos, certifications, and specialisms — personalising a typically anonymous service</li>
+            <li>Interactive temperature comfort slider with live monthly savings estimate — the only interactive demo in the market</li>
+            <li>Before/After video proof positioned as a core service differentiator — outclassing competition naturally</li>
+            <li>Annual maintenance plan pricing cards — converting one-off customers into recurring revenue</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Feature breakdown -->
+      <ul class="feature-list">
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v3A5 5 0 0 1 12 12A5 5 0 0 1 7 7V4Z"/><path d="M7 5H4v2a4 4 0 0 0 4 4"/><path d="M17 5h3v2a4 4 0 0 1-4 4"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">4.9★ Social Proof Bar</div>
+            <div class="fi-desc">A hero badge displaying verified Google rating with review count — visible before the fold.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">Mobile Emergency Bar</div>
+            <div class="fi-desc">A high-contrast top bar with clickable phone number — the exact first thing a mobile user sees.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">Trust Badge Row</div>
+            <div class="fi-desc">Licensed · 1-Year Warranty · 60-Min Emergency — rendered as compact icon pairs affirming reliability.</div>
+          </div>
+        </li>
+        <li>
+          <div class="premium-icon-box">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          </div>
+          <div class="fi-body">
+            <div class="fi-title">Annual Plan Selection</div>
+            <div class="fi-desc">Three-tier maintenance plan cards convert one-time repair customers into annual members gracefully.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="modal-cta">
+        <div class="modal-cta-text">
+          <h4>Ready to build trust at scale?</h4>
+          <p>We design HVAC websites that position your business as the premium choice — and prove it.</p>
+        </div>
+        <a href="#contact" class="modal-cta-btn">Book a Free Call →</a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <div class="pf-modal" id="modal-re2">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-hero">
+      <img class="modal-hero-img" src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1600&q=90"
+        alt="Metro Commercial">
+      <div class="modal-hero-gradient"></div>
+      <div class="modal-hero-content">
+        <div class="modal-tag">Real Estate · Commercial Properties</div>
+        <div class="modal-title">Metro<br>Commercial</div>
+        <div class="modal-subtitle">A commercial property firm that went from cold calls to inbound investor leads —
+          systematically.</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-results">
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Attract</div>
+          <div class="result-small">C-Suite Investors</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Automate</div>
+          <div class="result-small">Lead Nurturing</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Organize</div>
+          <div class="result-small">CRM Pipelines</div>
+        </div>
+        <div class="modal-result">
+          <div class="result-big" style="font-size: 1.8rem;">Systematise</div>
+          <div class="result-small">Inbound Deal Flow</div>
+        </div>
+      </div>
+
+      <div class="modal-screens">
+        <div class="modal-laptop">
+          <div class="modal-browser-bar">
+            <div class="bd bd-r"></div>
+            <div class="bd bd-y"></div>
+            <div class="bd bd-g"></div>
+            <div class="modal-url">metrocommercial.in</div>
+          </div>
+          <img class="modal-screen-img" src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1000&q=85"
+            alt="Website">
+        </div>
+        <div class="modal-phone">
+          <div class="modal-phone-notch"></div>
+          <img class="modal-phone-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=80"
+            alt="Mobile">
+        </div>
+      </div>
+      <div class="modal-two-col">
+        <div class="modal-col">
+          <div class="modal-col-label">The Challenge</div>
+          <h3>Relying on referrals in a digital-first world</h3>
+          <p>Metro Commercial was entirely dependent on referrals and cold outreach for new clients. In a market where
+            investors research properties online extensively, their near-zero digital presence was a serious liability.
+          </p>
+          <p>We built the full inbound system: a credible web portal, targeted LinkedIn campaigns, and an investor
+            nurture sequence that did the relationship-building automatically.</p>
+        </div>
+        <div class="modal-col">
+          <div class="modal-col-label">Deliverables</div>
+          <ul class="modal-deliverables">
+            <li>Commercial property portal with advanced search filters</li>
+            <li>LinkedIn Ads targeting C-suite &amp; HNI investors</li>
+            <li>Investor nurture email sequence — 8-touch automation</li>
+            <li>Monthly market report PDF for lead magnet</li>
+            <li>CRM integration (HubSpot) for pipeline management</li>
+            <li>Quarterly brand content strategy</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <div class="modal-cta-text">
+          <h4>In commercial real estate?</h4>
+          <p>We build investor acquisition systems that run on autopilot.</p>
+        </div>
+        <a href="index.html#contact" class="modal-cta-btn">Book a Free Call →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Coming Soon -->
+  <div class="pf-modal" id="modal-comingsoon">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-hero"
+      style="height: 100vh; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+      <!-- Dark premium background gradient -->
+      <div class="modal-hero-gradient" style="background: linear-gradient(135deg, #050b1e 0%, #030612 100%);"></div>
+
+      <!-- Glowing blue orb effect -->
+      <div
+        style="position: absolute; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%); filter: blur(80px); top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;">
+      </div>
+
+      <div class="modal-hero-content"
+        style="position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; padding-bottom: 0;">
+        <div class="modal-tag" style="justify-content: center; margin-bottom: 24px;">
+          Case Study In Progress
+        </div>
+        <div class="modal-title" style="font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 24px;">
+          Coming Soon.
+        </div>
+        <div class="modal-subtitle" style="margin: 0 auto; max-width: 540px; font-size: 1.1rem; line-height: 1.8;">
+          Our team is currently documenting the behind-the-scenes strategy, premium deliverables, and scalable growth
+          systems we deployed for this client. Check back soon.
+        </div>
+
+        <div style="margin-top: 45px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; width: 100%; padding: 0 20px; box-sizing: border-box;">
+          <a href="#" onclick="closeModal(); return false;" class="modal-cta-btn"
+            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; box-shadow: none; flex: 1; min-width: 140px; justify-content: center;">←
+            Go Back</a>
+          <a href="index.html#contact" class="modal-cta-btn" style="flex: 1; min-width: 140px; justify-content: center;">Book a Call</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP Animation Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+  <script>
+
+    /* ── FILTER ── */
+    const tabs = document.querySelectorAll('.pf-tab');
+    const cards = document.querySelectorAll('.pf-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const f = tab.dataset.filter;
+        
+        cards.forEach(card => {
+          if (f === 'all' || card.dataset.industry === f) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // [NEW CODE] Refresh GSAP math because grid has changed dimensions!
+        if (typeof ScrollTrigger !== 'undefined') {
+          setTimeout(() => {
+            ScrollTrigger.refresh();
+          }, 50);
+        }
+
+      });
+    });
+
+    /* ── TELL LENIS TO IGNORE THE SCROLLING INSIDE MODALS ── */
+    document.querySelectorAll('.pf-modal').forEach(modal => {
+      modal.setAttribute('data-lenis-prevent', 'true');
+    });
+
+    /* ── MOBILE INDUSTRY SHEET LOGIC ── */
+    const mobileIndustryCopy = {
+      "hvac": { title: "HVAC & Home Services", bullets: "<li><span>Local SEO Dominance</span>Rank #1 when homeowners search for emergency repairs.</li><li><span>Trust-Building UX</span>Convert stressed owners with frictionless booking forms.</li>" },
+      "health": { title: "Healthcare Clinics", bullets: "<li><span>Patient First Design</span>Build credibility with clean, authoritative aesthetics.</li><li><span>Seamless Scheduling</span>Integrate booking software into a simple patient flow.</li>" },
+      "petsalon": { title: "Pet Salons & Grooming", bullets: "<li><span>Automated Bookings</span>Turn visitors into scheduled appointments seamlessly.</li><li><span>Local Discoverability</span>Dominate local maps and become the #1 groomer nearby.</li>" },
+      "plumber": { title: "Plumbers & Trade Services", bullets: "<li><span>Emergency Call Routing</span>Drive urgent traffic to a one-tap call button instantly.</li><li><span>Trust & Transparency</span>Build trust with reviews, licensing, and upfront pricing.</li>" },
+      "restaurant": { title: "Restaurants & Dining", bullets: "<li><span>Sensory Design</span>Capture your venue's experience through immersive visuals.</li><li><span>Automated Bookings</span>Turn followers into guaranteed weekend reservations.</li>" }
+    };
+
+    function openMobileSheet(industryKey) {
+      const data = mobileIndustryCopy[industryKey] || mobileIndustryCopy["hvac"];
+      const activeCard = document.querySelector(`.pf-card[data-industry="${industryKey}"]`);
+      const projectId = activeCard ? activeCard.dataset.project : null;
+      
+      document.getElementById('mobileSheetContent').innerHTML = `
+        <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:16px;">Our Impact</div>
+        <div style="font-size:1.3rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:20px;">How we scale ${data.title}</div>
+        <ul class="industry-bullets" style="list-style:none;padding:0;margin:0 0 24px;">${data.bullets}</ul>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          ${projectId ? `<button onclick="openModalFromSheet('${projectId}')" style="display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;padding:13px 28px;border-radius:50px;font-weight:600;font-size:0.82rem;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;width:100%;">View Case Study →</button>` : ''}
+          <a href="index.html#contact" onclick="closeMobileSheet()" style="display:flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase;text-decoration:none;width:100%;box-sizing:border-box;">Book a Meet →</a>
+        </div>
+      `;
+      document.getElementById('mobileIndustrySheet').classList.add('active');
+      document.getElementById('mobileSheetOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openModalFromSheet(projectId) {
+      closeMobileSheet();
+      const id = 'modal-' + projectId;
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      setTimeout(() => {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+        modal.scrollTop = 0;
+      }, 350);
+    }
+
+    function closeMobileSheet() {
+      document.getElementById('mobileIndustrySheet').classList.remove('active');
+      document.getElementById('mobileSheetOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+
+    /* ── OPEN MODAL ── */
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        // On mobile (< 1024px), show the industry sheet FIRST, then let them tap "View Case Study"
+        if (window.innerWidth < 1024) {
+          openMobileSheet(card.dataset.industry);
+          return;
+        }
+        // On desktop, open the full case study modal as before
+        const id = 'modal-' + card.dataset.project;
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+        modal.scrollTop = 0;
+        setTimeout(() => {
+          const img = modal.querySelector('.modal-hero-img');
+          if (img) img.style.transform = 'scale(1)';
+        }, 50);
+      });
+    });
+
+    /* ── CLOSE MODAL ── */
+    function closeModal() {
+      document.querySelectorAll('.pf-modal.open').forEach(m => m.classList.remove('open'));
+      
+      // Restore scrollbars
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = ''; 
+    }
+
+    // close on backdrop click (outside content)
+    document.querySelectorAll('.pf-modal').forEach(modal => {
+      modal.addEventListener('click', e => {
+        if (e.target === modal) closeModal();
+      });
+    });
+
+    // close on ESC
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+<!-- 1. BUTTER SMOOTH SCROLL LIBRARY -->
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+<script>
+  // ── 1. INITIALIZE BUTTERY SMOOTH SCROLLING ──
+  const lenis = new Lenis({
+    duration: 1.0,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    syncTouch: false,       // Prevents mobile fighting
+    touchMultiplier: 1.5,
+  });
+
+  
+  // Connect the smooth scroller directly into GSAP's timeline
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+
+
+  // ── 2. PREMIUM GSAP SCROLL STACKING ──
+  gsap.registerPlugin(ScrollTrigger);
+
+  // We use modern gsap.matchMedia() which intelligently cleans up on resizes
+  let mm = gsap.matchMedia();
+
+  // 🚀 CHANGED TO 1024px: Protects tablets and small laptops from being squeezed!
+  mm.add("(min-width: 1024px)", () => {
+      const grid = document.getElementById("pfGrid");
+      const cards = gsap.utils.toArray(".pf-card");
+      if (!grid || cards.length < 2) return;
+
+      const originalHeight = grid.offsetHeight;
+      grid.style.height = originalHeight + "px";
+      grid.style.position = "relative";
+
+      const state = cards.map(c => ({
+        left: c.offsetLeft,
+        top: c.offsetTop,
+        width: c.offsetWidth,
+        height: c.offsetHeight
+      }));
+
+      const fState = state[0]; 
+      const targetState = state[1]; 
+
+      cards.forEach((card, i) => {
+        card.style.position = "absolute";
+        card.style.margin = "0"; 
+        card.style.left = state[i].left + "px";
+        card.style.top = state[i].top + "px";
+        card.style.width = state[i].width + "px";
+        card.style.height = state[i].height + "px";
+        card.style.zIndex = 1;
+      });
+
+      const industryCopy = {
+        "hvac": { title: "HVAC & Home Services", bullets: "<li><span>Local SEO Dominance</span>Ensure your business ranks #1 when homeowners search for emergency repairs.</li><li><span>Trust-Building UX</span>Instantly convert stressed property owners with streamlined, frictionless booking forms.</li>" },
+        "health": { title: "Healthcare Clinics", bullets: "<li><span>Patient First Design</span>Foster instant credibility with clean, authoritative, and calming visual aesthetics.</li><li><span>Seamless Scheduling</span>Integrate complex booking software directly into a simple patient flow.</li>" },
+        "petsalon": { title: "Pet Salons & Grooming", bullets: "<li><span>Automated Bookings</span>Turn website visitors into scheduled appointments seamlessly with integrated booking flows.</li><li><span>Local Discoverability</span>Dominate local maps so you are the #1 choice when owners search for groomers nearby.</li>" },
+        "plumber": { title: "Plumbers & Trade Services", bullets: "<li><span>Emergency Call Routing</span>Drive high-urgency traffic directly to a one-tap call button when a pipe bursts.</li><li><span>Trust & Transparency</span>Build instant trust with review aggregations, clear licensing, and upfront pricing.</li>" },
+        "restaurant": { title: "Restaurants & Dining", bullets: "<li><span>Sensory Design</span>Capture the ambiance and culinary excellence of your venue through immersive visuals.</li><li><span>Automated Bookings</span>Turn Instagram followers into guaranteed weekend reservations seamlessly.</li>" }
+      };
+
+      function buildHTML(ind) {
+          const data = industryCopy[ind] || industryCopy["hvac"];
+          return `<div class="industry-title">Our Impact</div>
+                  <div class="industry-heading">How we scale ${data.title}</div>
+                  <ul class="industry-bullets">${data.bullets}</ul>
+                  <a href="#contact" class="industry-cta-btn">Book a meet →</a>`;
+      }
+
+      const textBoxes = [];
+      cards.forEach((card) => {
+         const box = document.createElement("div");
+         box.className = "industry-text-box";
+         box.innerHTML = buildHTML(card.dataset.industry);
+         
+         box.style.left = targetState.left + "px";
+         box.style.top = targetState.top + "px";
+         box.style.width = targetState.width + "px";
+         box.style.height = targetState.height + "px";
+         
+         grid.appendChild(box);
+         textBoxes.push(box);
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 15%",       
+          end: "+=6000",          
+          pin: true,
+          scrub: 1.2,             
+        }
+      });
+
+      tl.fromTo(textBoxes[0], { autoAlpha: 0, x: 30 }, { autoAlpha: 1, x: 0, duration: 1.5, ease: "power2.out" }, 0.5 );
+
+      cards.forEach((card, index) => {
+        if (index === 0) { card.style.zIndex = 2; return; }
+        
+        const overlay = card.querySelector(".pf-card-overlay");
+        const btn = card.querySelector(".pf-card-hover-btn");
+        const startTime = index * 3.5; 
+
+        tl.to(card, { left: fState.left, top: fState.top, width: fState.width, height: fState.height, zIndex: index + 10, duration: 2, ease: "power2.inOut" }, startTime); 
+        
+        if (overlay) tl.to(overlay, { opacity: 1, duration: 1 }, startTime + 1);
+        if (btn) tl.to(btn, { backgroundColor: "#2563eb", borderColor: "#2563eb", duration: 1 }, startTime + 1);
+
+        tl.to(textBoxes[index - 1], { autoAlpha: 0, x: -30, duration: 1, ease: "power2.in" }, startTime); 
+        tl.fromTo(textBoxes[index], { autoAlpha: 0, x: 30 }, { autoAlpha: 1, x: 0, duration: 1, ease: "power2.out" }, startTime + 1 );
+      }); 
+
+      const lastIndex = cards.length - 1;
+      const blowbackStart = (lastIndex * 3.5) + 3.5; 
+
+      cards.forEach((card, i) => {
+        if (i === 0) return; 
+        const overlay = card.querySelector(".pf-card-overlay");
+        const btn = card.querySelector(".pf-card-hover-btn");
+
+        tl.to(card, { left: state[i].left, top: state[i].top, width: state[i].width, height: state[i].height, zIndex: 1, duration: 3, ease: "power3.inOut" }, blowbackStart); 
+
+        if (overlay) tl.to(overlay, { opacity: 0, duration: 1.5 }, blowbackStart);
+        if (btn) tl.to(btn, { backgroundColor: "rgba(37, 99, 235, 0.35)", borderColor: "rgba(255, 255, 255, 0.3)", duration: 1.5 }, blowbackStart);
+      });
+      
+      tl.to(textBoxes[lastIndex], { autoAlpha: 0, x: -30, duration: 1.5, ease: "power2.in" }, blowbackStart);
+      tl.to({}, { duration: 2 }); 
+
+      // ── 3. RESIZE / TABLET CLEANUP PROTOCOL ──
+      return () => {
+        cards.forEach(card => {
+          gsap.set(card, { clearProps: "position,margin,left,top,width,height,zIndex" });
+        });
+        grid.style.height = "";
+        grid.style.position = "";
+        textBoxes.forEach(b => b.remove());
+        lenis.resize(); // Tell Lenis to re-sync after GSAP unpins
+      };
+  });
+
+
+  // Re-sync coordinates briefly if the screen is wildly dragged/resized
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 250);
+  });
+</script>
+
+  <!-- ── MOBILE INDUSTRY BOTTOM SHEET ── -->
+  <div class="mobile-sheet-overlay" id="mobileSheetOverlay" onclick="closeMobileSheet()"></div>
+  <div class="mobile-industry-sheet" id="mobileIndustrySheet">
+    <div class="mobile-sheet-handle"></div>
+    <button class="mobile-sheet-close" onclick="closeMobileSheet()">✕</button>
+    <div id="mobileSheetContent">
+      <!-- Dynamically filled by JS -->
+    </div>
+  </div>
+
+
+</body>
+
+</html>
