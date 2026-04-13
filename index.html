@@ -860,6 +860,19 @@
 /* 📱 MOBILE & TABLET OPTIMIZATION ENGINE    */
 /* ========================================= */
 @media (max-width: 768px) {
+
+    /* Fix Hero Buttons on Mobile */
+    .hero-buttons-wrapper {
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 0 6vw !important;
+    }
+    .hero-buttons-wrapper a {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
     /* 1. Global Spacing & Hero Fixes */
     section { padding: 60px 5vw; min-height: auto; }
     .hero { min-height: 100vh; padding-top: 150px; justify-content: center; overflow: hidden; }
@@ -887,13 +900,14 @@
     nav a { margin: 0; font-size: 1.2rem; color: #fff !important; opacity: 1; }
 
     /* 4. Purpose & Journey Sections */
-    .purpose-section { top: 0; } /* Removes confusing overlap on mobile */
-    .purpose-section, .journey-section { padding: 80px 5vw; min-height: auto; }
+    .purpose-section { top: 0; position: relative !important; } 
+    .purpose-section, .journey-section { padding: 80px 5vw; min-height: auto; overflow: visible !important; }
     .pj-block { flex-direction: column !important; gap: 20px !important; display: flex; }
     .pj-label { flex: none !important; margin-bottom: 5px; font-size: 1.5rem; text-align: center; width: 100%; }
     .pj-content h2 { font-size: 2rem; text-align: center; }
     .pj-content p { text-align: center; font-size: 0.95rem; margin: 0 auto 18px auto; }
     .bg-huge-text { font-size: 25vw !important; bottom: 2% !important; }
+
 
     /* 5. Service Cards (Grid collapse) */
     .card-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -950,16 +964,25 @@
         height: 450vmax !important;
     }
 
-     /* 13. PERFORMANCE FIXES FOR MOBILE */
-    /* Removes massive blurs that destroy mobile frame rates */
-    .orb, .c-orb, .liquid-bg-team, .liquid-bg-contact {
-        filter: none !important; 
+    /* 13. PERFORMANCE FIXES FOR MOBILE (Anti-Lag System) */
+    /* Turns off hidden particles and blurs that destroy mobile frame rates */
+    .orb, .c-orb, .liquid-bg-contact, .pricing-bg-glow, #axeon-canvas {
+        display: none !important; 
     }
     
-    /* Forces the Horizontal Scroll section to use hardware graphics acceleration */
-    .h-wrap {
-        will-change: transform; 
+    /* Disables extremely heavy glassmorphism blurs solely on mobile */
+    .pricing-card, .faq-item, .glass-form-card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background-color: #0d0d12 !important; /* Solid fallback color */
     }
+
+    /* Actively engages processor hardware acceleration */
+    .h-wrap, .horizontal-outer {
+        will-change: transform; 
+        transform: translateZ(0);
+    }
+
 
 }
 
@@ -994,7 +1017,7 @@
         <div class="logo">axeon.</div>
         
         <nav>
-            <a href="#about-section" onclick="document.querySelector('nav').classList.remove('active')">About Us</a>
+            <a href="#blog" onclick="document.querySelector('nav').classList.remove('active')">Blogs</a>
             <a href="#services" onclick="document.querySelector('nav').classList.remove('active')">Services</a>
             <a href="portfolio.html" onclick="document.querySelector('nav').classList.remove('active')">Portfolio</a>
             <a href="#pricing" onclick="document.querySelector('nav').classList.remove('active')">Pricing</a>
@@ -1076,7 +1099,7 @@ appointments.
     </p>
 </section>
 
-<div style="display: flex; justify-content: center; gap: 10px; margin: 20px auto 40px auto; flex-wrap: wrap; width: 100%;">
+<div class="hero-buttons-wrapper" style="display: flex; justify-content: center; gap: 14px; margin: 20px auto 40px auto; width: 100%; max-width: 450px;">
     
     <style>
                 .btn-cta {
@@ -2182,27 +2205,80 @@ appointments.
 </section>
 
 
-<section class="journey-section">
+<section class="journey-section" id="blog" style="min-height: auto; padding: 70px 5vw 90px 5vw;">
     <!-- Blended Black Background Text -->
-    <div class="bg-huge-text">Journey</div>
+    <div class="bg-huge-text" style="font-size: 13vw; bottom: 3%;">Insights</div>
 
     <div class="pj-block fade-item">
-        <div class="pj-label">Journey</div>
+        <div class="pj-label">Blog</div>
         <div class="pj-content">
-            <h2>From Experiments to Scalable Systems</h2>
+            <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 15px;">Strategies That Drive Local Dominance</h2>
             <p>
-                Axeon began as a performance-driven growth lab focused on experimentation, rapid testing, and data-backed decision making. In the early stages, our focus was simple: test ideas quickly, measure outcomes precisely, and identify what consistently drives measurable growth.
+                We don't just build websites; we engineer growth. Our latest insights, case studies, and practical guides are designed specifically for trade and local service businesses looking to scale. 
                 <br><br>
-                As our systems matured, so did the scale of the businesses we support. Today, Axeon works with ambitious teams to design and implement scalable marketing ecosystems that combine strategy, technology, and intelligent automation.
-                <br><br>
-                Our journey is defined by continuous refinement—where every iteration strengthens the system and sharpens the strategy. Over time, these learnings evolved into a clear operating model for how we approach growth today.
+                Discover how top-performing local businesses are leveraging local SEO, high-converting UX, and AI automation to outrank competitors and flood their schedules with high-value bookings.
             </p>
-            <p>
-                <span style="color: #ffffff; font-weight: 600;">What emerged is a simple framework that guides every system we build.</span>
-            </p>
+
+            <!-- Ultra-Premium Featured Blog Card -->
+            <div style="position: relative; margin: 30px 0; border-radius: 24px; padding: 1px; background: linear-gradient(145deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.02) 100%); box-shadow: 0 40px 80px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); overflow: hidden; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);" 
+                 onmouseover="this.style.transform='translateY(-8px)';" 
+                 onmouseout="this.style.transform='translateY(0)';">
+                
+                <!-- Inner Glass Layer -->
+                <div style="position: relative; background: linear-gradient(135deg, #131317 0%, #08080c 100%); border-radius: 23px; padding: 30px 35px; z-index: 2; display: flex; flex-direction: column; gap: 8px;">
+                    
+                    <!-- Deep Ambient Blue Glow in Top-Right Corner -->
+                    <div style="position: absolute; top: -15%; right: -15%; width: 350px; height: 350px; background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+
+                    <!-- Glowing "Deep Dive" Tag -->
+                    <div style="margin-bottom: 5px;">
+                        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: linear-gradient(90deg, rgba(37, 99, 235, 0.15), rgba(37, 99, 235, 0.05)); border: 1px solid rgba(37, 99, 235, 0.3); color: #60a5fa; border-radius: 50px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">
+                            <span style="width: 6px; height: 6px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px #3b82f6;"></span>
+                            Deep Dive
+                        </span>
+                    </div>
+                    
+                    <!-- Title -->
+                    <h3 style="color: #ffffff; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 700; line-height: 1.25; letter-spacing: -0.03em; margin: 0; max-width: 95%;">
+                        How to get your HVAC company on the first page of Google
+                    </h3>
+                    
+                    <!-- Paragraph -->
+                    <p style="color: #a1a1aa; font-size: 1.05rem; line-height: 1.7; margin: 10px 0 15px 0; max-width: 90%;">
+                        A masterclass breakdown on optimizing your Google Business Profile to capture high-intent, local traffic and flood your pipeline with verified leads entirely on autopilot.
+                    </p>
+                    
+                    <!-- Advanced Interactive Link (Transforms on Hover) -->
+                    <div style="display: flex; align-items: center;">
+                        <a href="blog.html" style="color: #ffffff; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 14px; ffont-size: 0.85rem; transition: opacity 0.3s;" 
+                           onmouseover="this.style.opacity='0.9'; this.querySelector('span').style.background='#ffffff'; this.querySelector('span').style.borderColor='#ffffff'; this.querySelector('span').style.transform='translateX(6px)'; this.querySelector('svg').style.stroke='#000000';" 
+                           onmouseout="this.style.opacity='1'; this.querySelector('span').style.background='rgba(255,255,255,0.05)'; this.querySelector('span').style.borderColor='rgba(255,255,255,0.1)'; this.querySelector('span').style.transform='translateX(0)'; this.querySelector('svg').style.stroke='#ffffff';">
+                            Read the Playbook
+                            <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: stroke 0.3s ease;">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div>
+                <a href="blog.html" style="display: inline-flex; align-items: center; gap: 10px; background: #ffffff; color: #000000; padding: 12px 28px; border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 0.85rem; transition: transform 0.4s ease, box-shadow 0.4s ease;" 
+                   onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 30px rgba(255, 255, 255, 0.25)';" 
+                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                    Explore All Resources
+                </a>
+            </div>
+            
         </div>
-        </div>
+    </div>
 </section>
+
 
 <!-- CLOSE THE WRAPPER HERE -->
 </div>
@@ -2348,56 +2424,6 @@ ownership</p>
     </div>
 
 </section>
-<style>
-    .team-outer-container {
-        background-color: #000;
-        position: relative;
-        overflow: hidden;
-        color: #fff;
-        width: 100%;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .liquid-bg-team {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        z-index: 1;
-        background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
-        filter: blur(80px) contrast(1.1);
-        transform: translateZ(0); /* Prevents background repaint */
-        backface-visibility: hidden;
-    }
-
-    .orb { 
-        position: absolute; width: 60vw; height: 60vw; border-radius: 50%; 
-        opacity: 0.5; mix-blend-mode: screen; 
-        will-change: transform; 
-        transform: translateZ(0); 
-    }
-
-    .orb-1 { background: radial-gradient(circle, rgba(79, 70, 229, 0.4) 0%, transparent 70%); top: -10%; left: -10%; }
-    .orb-2 { background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, transparent 70%); bottom: -10%; right: -10%; }
-    .orb-3 { background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%); top: 40%; left: 30%; width: 40vw; height: 40vw; }
-
-    .team-wrapper { padding: 180px 8% 100px; min-height: 100vh; position: relative; z-index: 2; }
-    .title-reveal { font-size: clamp(3.5rem, 10vw, 7rem); font-weight: 300; line-height: 0.9; margin-bottom: 60px; }
-    .mission-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 100px; margin-bottom: 150px; }
-    .label-gray { color: #888; text-transform: uppercase; font-size: 2.5rem; letter-spacing: 2px; margin-bottom: 20px; display: block; }
-    .main-text { font-size: 2.2rem; line-height: 1.2; font-weight: 400; }
-    .sub-text { color: #888; font-size: 1.1rem; line-height: 1.6; margin-top: 30px; }
-
-    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; border-top: 1px solid rgba(255,255,255,0.1); }
-    .team-card { padding: 60px 30px; border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); min-height: 450px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.6s; }
-    .team-card:hover { background: rgba(255,255,255,0.03); }
-    .team-card:last-child { border-right: none; }
-    .reveal-item { opacity: 0; transform: translateY(40px); }
-
-    @media (max-width: 1100px) {
-        .team-grid { grid-template-columns: repeat(2, 1fr); }
-        .mission-grid { grid-template-columns: 1fr; gap: 40px; }
-        .team-card:nth-child(2n) { border-right: none; }
-    }
-</style>
 
 <section class="faq-section" id="faq">
     <!-- Huge background watermark to match your site's style -->
@@ -2516,61 +2542,6 @@ ownership</p>
 </section>
 
 
-<div class="team-outer-container" id="about-section">
-    <div class="liquid-bg-team">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
-
-    <section class="team-wrapper">
-        <h1 class="title-reveal reveal-item">About us</h1>
-        <div class="mission-grid">
-            <div><span class="label-gray">Our Team</span></div>
-            <div>
-                <p class="main-text reveal-item">Axeon operates with a lean core team supported by a network of specialized collaborators.</p>
-                <p class="sub-text reveal-item">This structure allows us to bring together the right expertise for each project while maintaining a focused and efficient workflow.</p>
-            </div>
-        </div>
-
-        <div class="team-section">
-            <div class="team-grid">
-                <div class="team-card reveal-item"><h3 class="card-name">Founder & Strategy</h3><p class="card-info">Growth strategy, marketing systems, and client partnerships.</p></div>
-                <div class="team-card reveal-item"><h3 class="card-name">Creative & Design</h3><p class="card-info">Brand identity, visual systems, and digital design.</p></div>
-                <div class="team-card reveal-item"><h3 class="card-name">Marketing & Performance</h3><p class="card-info">Advertising strategy, campaign optimization, and analytics.</p></div>
-                <div class="team-card reveal-item"><h3 class="card-name">Automation & Technology</h3><p class="card-info">AI tools, workflow automation, and technical integrations.</p></div>
-            </div>
-        </div>
-    </section>
-</div>
-
-<script>
-    // Ensure GSAP logic runs after the elements are loaded
-    window.addEventListener('load', function() {
-        if (typeof gsap !== 'undefined') {
-            // Liquid Orb Movement
-            gsap.to(".orb-1", { x: '20vw', y: '15vh', duration: 15, repeat: -1, yoyo: true, ease: "sine.inOut" });
-            gsap.to(".orb-2", { x: '-15vw', y: '-20vh', duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 1 });
-            gsap.to(".orb-3", { x: '10vw', y: '25vh', duration: 20, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 2 });
-
-            // Reveal animations
-            const items = document.querySelectorAll('.reveal-item');
-            items.forEach((el) => {
-                gsap.to(el, {
-                    opacity: 1, y: 0, duration: 1.4, ease: "power4.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 90%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-        }
-    });
-</script>
-      
-
-</section>
       
       <style>
     .contact-outer-container {
