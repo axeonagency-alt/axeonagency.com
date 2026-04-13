@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>How to Get Your HVAC Company on the First Page of Google — Axeon</title>
+<link rel="preconnect" href="https://fonts.cdnfonts.com"/>
+<link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --black:#0a0a0a;
+  --white:#ffffff;
+  --off-white:#f8f7f4;
+  --warm-gray:#f2f0ec;
+  --mid-gray:#c8c5be;
+  --text-muted:#7a776f;
+  --accent:#1a56db;
+  --accent-subtle:#eef3ff;
+  --border:#e5e2db;
+  --font:'Aileron',sans-serif;
+}
+
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--font);
+  background:var(--white);
+  color:var(--black);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(255,255,255,0.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1.5rem,5vw,5rem);
+  animation:fadeDown .6s ease both;
+}
+.nav-logo{
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.nav-logo span{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-link{
+  font-size:.78rem;font-weight:400;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-muted);
+  text-decoration:none;transition:color .2s;
+}
+.nav-link:hover{color:var(--black)}
+.nav-cta{
+  font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--white);background:var(--black);
+  padding:.5rem 1.3rem;text-decoration:none;
+  transition:background .2s,transform .15s;
+}
+.nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  padding-top:60px;
+  overflow:hidden;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(3rem,8vw,7rem) clamp(2rem,5vw,4rem) clamp(3rem,8vw,7rem) clamp(2rem,6vw,6rem);
+  animation:fadeRight .9s .2s ease both;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:2rem;
+}
+.hero-tag::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+.hero-title{
+  font-size:clamp(2.2rem,4.5vw,3.8rem);
+  font-weight:200;line-height:1.1;letter-spacing:-.025em;
+  color:var(--black);margin-bottom:1.75rem;
+}
+.hero-title strong{font-weight:700;display:block}
+.hero-meta{
+  display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;
+  font-size:.78rem;color:var(--text-muted);letter-spacing:.04em;
+  margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border);
+}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--mid-gray);flex-shrink:0}
+.hero-intro{
+  font-size:1.05rem;font-weight:300;color:#3d3a34;line-height:1.82;
+  max-width:460px;
+}
+.hero-scroll{
+  margin-top:3rem;
+  display:flex;align-items:center;gap:.75rem;
+  font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+.scroll-line{
+  width:40px;height:1px;background:var(--mid-gray);
+  animation:expandLine 1.5s 1.5s ease both;transform-origin:left;transform:scaleX(0);
+}
+
+.hero-right{
+  position:relative;overflow:hidden;
+  animation:fadeLeft .9s .3s ease both;
+}
+.hero-image{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(15%);
+  transition:transform 8s ease;display:block;
+}
+.hero-right:hover .hero-image{transform:scale(1.03)}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(10,10,10,.15) 0%,transparent 60%);
+}
+.hero-stat{
+  position:absolute;bottom:2.5rem;left:-1.5rem;
+  background:var(--white);
+  padding:1.25rem 1.75rem;
+  box-shadow:0 20px 60px rgba(0,0,0,.14);
+  animation:floatUp .8s 1.1s ease both;opacity:0;
+}
+.stat-num{font-size:2.5rem;font-weight:700;color:var(--black);line-height:1;letter-spacing:-.04em}
+.stat-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-top:.3rem}
+
+/* TRUST BAR */
+.trust-bar{
+  background:var(--black);
+  padding:1.2rem clamp(2rem,6vw,6rem);
+  display:flex;align-items:center;gap:clamp(2rem,5vw,4rem);
+  overflow-x:auto;white-space:nowrap;
+  animation:fadeUp .7s .5s ease both;
+}
+.trust-item{display:flex;align-items:center;gap:.65rem;flex-shrink:0}
+.trust-dot{width:5px;height:5px;background:var(--accent);border-radius:50%}
+.trust-text{font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+
+/* LAYOUT */
+.container{max-width:1120px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+.article-wrap{
+  display:grid;grid-template-columns:1fr 300px;
+  gap:5rem;padding:5.5rem 0 6rem;
+  align-items:start;
+}
+
+/* ARTICLE */
+.section-label{
+  font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.section-label::before{content:'';display:block;width:16px;height:1px;background:var(--accent)}
+
+h2.s-title{
+  font-size:clamp(1.6rem,3vw,2.2rem);
+  font-weight:200;letter-spacing:-.025em;line-height:1.2;
+  color:var(--black);margin-bottom:1.5rem;
+}
+h2.s-title strong{font-weight:700}
+
+.lead{font-size:1.08rem;font-weight:300;line-height:1.85;color:#2e2b26;margin-bottom:1.75rem}
+.body{font-size:.96rem;font-weight:300;line-height:1.85;color:#3d3a34;margin-bottom:1.5rem}
+
+.divider{height:1px;background:var(--border);margin:3.5rem 0}
+
+/* STATS ROW */
+.stat-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);margin:2.5rem 0;
+}
+.stat-cell{
+  background:var(--white);padding:2rem 1.5rem;text-align:center;
+  transition:background .2s;
+}
+.stat-cell:hover{background:var(--warm-gray)}
+.big-num{font-size:2.8rem;font-weight:700;letter-spacing:-.04em;color:var(--black);display:block;line-height:1;margin-bottom:.4rem}
+.big-label{font-size:.72rem;font-weight:400;letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted)}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column}
+.step{
+  display:grid;grid-template-columns:68px 1fr;gap:1.5rem;
+  padding:2.25rem 0;border-bottom:1px solid var(--border);
+  transition:transform .2s;
+}
+.step:first-child{padding-top:0}
+.step:last-child{border-bottom:none}
+.step:hover{transform:translateX(5px)}
+.step-n{font-size:3.2rem;font-weight:700;letter-spacing:-.05em;color:var(--warm-gray);line-height:1;padding-top:.1rem;user-select:none}
+.step-t{font-size:1.1rem;font-weight:600;letter-spacing:-.01em;color:var(--black);margin-bottom:.65rem}
+.step-p{font-size:.93rem;font-weight:300;line-height:1.8;color:#3d3a34}
+.step-badge{
+  display:inline-block;font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-subtle);padding:.22rem .6rem;margin-top:.8rem;
+}
+
+/* CHECKLIST */
+.chk{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin:1.5rem 0 2rem}
+.chk li{display:flex;align-items:flex-start;gap:.8rem;font-size:.94rem;font-weight:300;line-height:1.75;color:#3d3a34}
+.chk-ico{
+  width:18px;height:18px;min-width:18px;border-radius:50%;
+  background:var(--accent);display:flex;align-items:center;justify-content:center;margin-top:.2rem;
+}
+.chk-ico svg{width:9px;height:9px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* HIGHLIGHT BOX */
+.hl-box{
+  background:var(--black);color:var(--white);
+  padding:2.5rem 2.75rem;margin:3rem 0;position:relative;overflow:hidden;
+}
+.hl-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent)}
+.hl-box .qm{
+  font-size:6rem;font-weight:700;color:rgba(255,255,255,.05);
+  position:absolute;top:-1rem;left:1.25rem;line-height:1;user-select:none;
+}
+.hl-box p{font-size:1.02rem;font-weight:300;line-height:1.82;position:relative;z-index:1}
+.hl-box strong{font-weight:600;color:#93b4ff}
+
+/* CALLOUT */
+.callout{
+  border-left:2px solid var(--accent);
+  padding:1.4rem 1.6rem;background:var(--accent-subtle);margin:2.25rem 0;
+}
+.callout p{font-size:.93rem;font-weight:400;line-height:1.75;color:#1a2f5e}
+
+/* IMAGE BREAK */
+.img-break{position:relative;margin:2.75rem 0;overflow:hidden}
+.img-break img{
+  width:100%;height:360px;object-fit:cover;display:block;
+  filter:grayscale(12%);transition:transform 7s ease;
+}
+.img-break:hover img{transform:scale(1.035)}
+.img-cap{
+  position:absolute;bottom:1.25rem;left:1.5rem;right:1.5rem;
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:sticky;top:80px;align-self:start;
+  display:flex;flex-direction:column;gap:1.75rem;
+}
+.s-card{border:1px solid var(--border);padding:1.65rem}
+.s-card-title{
+  font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:1.2rem;
+  padding-bottom:.9rem;border-bottom:1px solid var(--border);
+}
+.toc{list-style:none;display:flex;flex-direction:column;gap:.1rem}
+.toc a{
+  font-size:.83rem;font-weight:300;color:var(--text-muted);
+  text-decoration:none;padding:.32rem 0;
+  display:flex;align-items:center;gap:.55rem;
+  transition:color .2s;
+}
+.toc a::before{
+  content:'';display:block;width:10px;height:1px;background:var(--mid-gray);flex-shrink:0;
+  transition:width .2s,background .2s;
+}
+.toc a:hover{color:var(--black)}
+.toc a:hover::before{width:18px;background:var(--accent)}
+
+.author-wrap{text-align:center}
+.author-img{
+  width:56px;height:56px;border-radius:50%;object-fit:cover;
+  margin:0 auto .9rem;display:block;border:2px solid var(--border);
+}
+.a-name{font-size:.88rem;font-weight:600;margin-bottom:.2rem}
+.a-role{font-size:.72rem;color:var(--text-muted);letter-spacing:.06em}
+.a-bio{font-size:.78rem;font-weight:300;color:var(--text-muted);line-height:1.65;margin-top:.8rem}
+
+.cta-card{background:var(--black);border:none;padding:2rem}
+.cta-label{font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem}
+.cta-h{font-size:1.08rem;font-weight:600;color:var(--white);line-height:1.3;margin-bottom:.9rem}
+.cta-p{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:1.5rem}
+.cta-btn{
+  display:block;text-align:center;
+  font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--black);background:var(--white);padding:.85rem 1rem;text-decoration:none;
+  transition:background .2s,color .2s,transform .15s;
+}
+.cta-btn:hover{background:var(--accent);color:var(--white);transform:translateY(-2px)}
+
+/* CONCLUSION */
+.conclusion{
+  background:var(--off-white);
+  padding:6rem clamp(2rem,6vw,6rem);
+  text-align:center;
+}
+.conclusion-inner{max-width:640px;margin:0 auto}
+.conclusion h2{
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:200;letter-spacing:-.03em;line-height:1.12;margin-bottom:1.5rem;
+}
+.conclusion h2 strong{font-weight:700}
+.conclusion p{font-size:1rem;font-weight:300;line-height:1.82;color:#3d3a34;margin-bottom:2.5rem}
+.c-btn{
+  display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--white);background:var(--black);padding:1rem 2.5rem;text-decoration:none;
+  transition:background .2s,transform .15s;
+}
+.c-btn:hover{background:var(--accent);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{
+  background:var(--black);
+  padding:2rem clamp(2rem,6vw,6rem);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+}
+.f-logo{font-size:1.5rem;font-family:'Playfair Display', serif;font-weight:700;text-transform:lowercase;color:var(--white);text-decoration:none}
+.f-logo span{color:var(--accent)}
+.f-copy{font-size:.72rem;font-weight:300;letter-spacing:.05em;color:rgba(255,255,255,.35)}
+.f-link{font-size:.72rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+.f-link:hover{color:var(--white)}
+
+/* ANIMATIONS */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes floatUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes expandLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .72s ease,transform .72s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-right{height:52vw;min-height:260px}
+  .hero-stat{left:1.5rem}
+  .article-wrap{grid-template-columns:1fr;gap:3rem}
+  .sidebar{position:static}
+  .stat-row{grid-template-columns:1fr 1fr}
+  .stat-row .stat-cell:last-child{grid-column:1/-1}
+}
+@media(max-width:600px){
+  .nav-right .nav-link{display:none}
+  .hero-title{font-size:2rem}
+  .stat-row{grid-template-columns:1fr}
+  .stat-row .stat-cell{grid-column:auto!important}
+  .step{grid-template-columns:44px 1fr;gap:1rem}
+  .step-n{font-size:2.4rem}
+  footer{flex-direction:column;align-items:flex-start}
+  .hl-box{padding:1.75rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://axeonagency.com/">axeon<span>.</span></a>
+  <div class="nav-right">
+    <a class="nav-link" href="https://axeonagency.com/#services">Services</a>
+    <a class="nav-link" href="https://axeonagency.com/portfolio.html">Work</a>
+    <a class="nav-cta" href="https://axeonagency.com/#contact-us">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Local SEO for HVAC</div>
+    <h1 class="hero-title">
+      How to Get Your<br>
+      HVAC Company on<br>
+      <strong>Page One of Google</strong>
+    </h1>
+    <div class="hero-meta">
+      <span>By Axeon Agency</span>
+      <span class="dot"></span>
+      <span>12 min read</span>
+      <span class="dot"></span>
+      <span>Local SEO Guide</span>
+    </div>
+    <p class="hero-intro">
+      When a homeowner's AC breaks at midnight, they call the first company they see on Google — not the best one they haven't found yet. This is your system for being first.
+    </p>
+    <div class="hero-scroll">
+      <span class="scroll-line"></span>
+      Scroll to read
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Unique, non-clichéd image: architectural / industrial air system geometry -->
+    <img
+      class="hero-image"
+      src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1400&q=85&auto=format&fit=crop"
+      alt="Industrial ventilation architecture"
+    />
+    <div class="hero-overlay"></div>
+    <div class="hero-stat">
+      <div class="stat-num">93%</div>
+      <div class="stat-label">of searches never<br>leave page one</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-dot"></span><span class="trust-text">Built for local HVAC businesses</span></div>
+  <div class="trust-item"><span class="trust-dot"></span><span class="trust-text">Proven SEO frameworks</span></div>
+  <div class="trust-item"><span class="trust-dot"></span><span class="trust-text">No fluff — only what works</span></div>
+  <div class="trust-item"><span class="trust-dot"></span><span class="trust-text">Used by 50+ home service businesses</span></div>
+  <div class="trust-item"><span class="trust-dot"></span><span class="trust-text">Free strategy call available</span></div>
+</div>
+
+<!-- ARTICLE -->
+<div class="container">
+  <div class="article-wrap">
+
+    <article>
+
+      <!-- INTRO -->
+      <div class="reveal">
+        <div class="section-label">The Reality</div>
+        <h2 class="s-title">Your competitors are<br><strong>already on page one.</strong></h2>
+        <p class="lead">Most HVAC business owners believe great service is enough. It is — but only to the customers who find you first. The ones who call your competitor because they ranked higher never knew you existed.</p>
+        <p class="body">The good news? Ranking on page one isn't reserved for the biggest HVAC companies with the biggest budgets. It's a systematic process built on five pillars — and most of your local competitors haven't touched three of them. This guide breaks each one down clearly, so you know exactly where to focus.</p>
+      </div>
+
+      <div class="stat-row reveal">
+        <div class="stat-cell">
+          <span class="big-num">76%</span>
+          <span class="big-label">of local searchers call within 24 hours</span>
+        </div>
+        <div class="stat-cell">
+          <span class="big-num">4×</span>
+          <span class="big-label">more leads from page-one vs page-two</span>
+        </div>
+        <div class="stat-cell">
+          <span class="big-num">$0</span>
+          <span class="big-label">per click from organic rankings</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- STEP 1 -->
+      <div class="reveal">
+        <div class="section-label">Step 1 of 5</div>
+        <h2 class="s-title">Claim and dominate your<br><strong>Google Business Profile</strong></h2>
+        <p class="body">Your Google Business Profile is the single highest-leverage SEO asset an HVAC company has. It powers the local "map pack" — the three listings that appear above organic results and get the majority of clicks. If you're not in those three, you're invisible to most high-intent searchers.</p>
+      </div>
+
+      <div class="img-break reveal">
+        <img
+          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=85&auto=format&fit=crop"
+          alt="Analytics dashboard showing local search performance"
+          loading="lazy"
+        />
+        <div class="img-cap">The local 3-pack captures the majority of clicks — Google Business Profile is the key to getting there</div>
+      </div>
+
+      <div class="reveal">
+        <p class="body">Most HVAC companies claim their profile and stop there. The ones that rank do more:</p>
+        <ul class="chk">
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Complete every field — categories, services, service areas, business hours, business description</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Upload 15–20 real photos of your team, trucks, completed jobs, and office</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Post updates weekly — seasonal tips, promotions, new services added</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Respond to every review — positive and negative — within 24 hours</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Enable messaging so customers can reach you directly from search results</li>
+        </ul>
+        <div class="callout">
+          <p><strong>Pro tip:</strong> Your primary business category should be "HVAC Contractor" — not "Air Conditioning Contractor" or "Heating Contractor." This broader category captures the most search volume and Google weights it heavily in local map pack rankings.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- STEP 2 -->
+      <div class="reveal">
+        <div class="section-label">Step 2 of 5</div>
+        <h2 class="s-title">Build a website that<br><strong>Google actually trusts</strong></h2>
+        <p class="body">Most HVAC websites are digital brochures — attractive to look at, but dead weight for SEO. Google ranks websites based on relevance, authority, and technical health. Your site needs to check all three boxes, and the technical foundations matter more than most business owners realize.</p>
+      </div>
+
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-n">01</div>
+          <div>
+            <div class="step-t">One dedicated page per service, per city</div>
+            <p class="step-p">Don't list all your services on a single page. Create dedicated pages for "AC Repair in [City]", "Furnace Installation in [City]", "Duct Cleaning in [City]". This is how you capture hyper-local, high-intent searches that are ready to convert.</p>
+            <span class="step-badge">On-Page SEO</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">02</div>
+          <div>
+            <div class="step-t">Page speed under 2 seconds</div>
+            <p class="step-p">Google confirmed page speed as a direct ranking factor. If your site loads in 5 seconds, you're racing with a flat tire. Compress images, remove unused scripts, use quality hosting. Fast sites also convert significantly better — dual benefit.</p>
+            <span class="step-badge">Technical SEO</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">03</div>
+          <div>
+            <div class="step-t">Mobile-first design is non-negotiable</div>
+            <p class="step-p">Over 70% of local service searches happen on mobile. Google indexes the mobile version of your site first. If your website isn't effortless to use on a phone, you're losing both rankings and customers at the same time.</p>
+            <span class="step-badge">Mobile SEO</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">04</div>
+          <div>
+            <div class="step-t">Schema markup for your HVAC services</div>
+            <p class="step-p">Schema is structured code that tells Google exactly what your business does, your service areas, your reviews, and your contact information. Most HVAC companies have zero schema. Adding it is a fast, high-impact technical win that most competitors entirely miss.</p>
+            <span class="step-badge">Technical SEO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- STEP 3 -->
+      <div class="reveal">
+        <div class="section-label">Step 3 of 5</div>
+        <h2 class="s-title">Get reviews that both<br><strong>rank you and convert visitors</strong></h2>
+        <p class="body">Reviews are the closest thing to a ranking superpower in local SEO. Google uses review quantity, recency, and sentiment as core signals to determine which businesses appear in the map pack. But reviews do double duty — they also turn skeptical website visitors into booked appointments.</p>
+      </div>
+
+      <div class="hl-box reveal">
+        <div class="qm">"</div>
+        <p>A business with <strong>50 reviews averaging 4.8 stars</strong> will consistently outrank a competitor with 12 reviews — even if that competitor has a better website and longer history. Reviews are one of the fastest paths to climbing local rankings, and most competitors are neglecting them entirely.</p>
+      </div>
+
+      <div class="reveal">
+        <p class="body">Your review strategy should be systematic, not random or hopeful:</p>
+        <ul class="chk">
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Text every customer a direct Google review link within 2 hours of job completion</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Train technicians to ask verbally: "If you're happy today, a quick Google review helps us a lot"</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Add a QR code linking to your review page on all invoices and business cards</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>Target at least 5 new reviews per month — recency matters as much as total volume</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- STEP 4 -->
+      <div class="reveal">
+        <div class="section-label">Step 4 of 5</div>
+        <h2 class="s-title">Build local authority with<br><strong>citations and backlinks</strong></h2>
+        <p class="body">Google measures authority partly by how consistently and widely your business is mentioned across the web. Citations — your business name, address, and phone number on directory websites — tell Google your business is real and established. Backlinks from local, relevant sites signal that your business is trusted.</p>
+      </div>
+
+      <div class="img-break reveal">
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&auto=format&fit=crop"
+          alt="Network nodes representing local digital authority"
+          loading="lazy"
+        />
+        <div class="img-cap">Local authority is built through consistent citations and quality backlinks — a signal Google weighs heavily</div>
+      </div>
+
+      <div class="reveal">
+        <p class="body">Start with these high-impact citation sources — each one is free or low-cost:</p>
+        <ul class="chk">
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span><strong>Yelp, Angi, HomeAdvisor, Thumbtack</strong> — the core home services directories every HVAC company should be on</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span><strong>BBB, Houzz, Nextdoor</strong> — trust signals that both customers and Google respect</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span><strong>Local Chamber of Commerce</strong> — high-authority local backlinks, often available for free or a nominal fee</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span><strong>Local news sponsorships or features</strong> — powerful trust signals for both rankings and customer conversion</li>
+        </ul>
+        <div class="callout">
+          <p><strong>Critical:</strong> Your business name, address, and phone must be <em>exactly identical</em> across every listing. "St." vs "Street", a missing suite number, or an outdated phone number creates citation conflicts that actively suppress your rankings. Audit this quarterly.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- STEP 5 -->
+      <div class="reveal">
+        <div class="section-label">Step 5 of 5</div>
+        <h2 class="s-title">Create content your customers<br><strong>are already searching for</strong></h2>
+        <p class="body">Content is how you capture demand beyond people searching directly for your services. When a homeowner searches "why is my AC blowing warm air" or "how often should I change my furnace filter" — they're your future customer. The HVAC company that answers those questions earns trust before they even need to hire someone.</p>
+      </div>
+
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-n">01</div>
+          <div>
+            <div class="step-t">Answer the questions your phone rings about</div>
+            <p class="step-p">Write blog posts for the exact questions customers call you about. "How much does AC installation cost in [City]?" captures a customer ready to hire. "Signs your heat exchanger is cracked" captures a customer about to spend $2,000 on a repair.</p>
+            <span class="step-badge">Content SEO</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">02</div>
+          <div>
+            <div class="step-t">Seasonal content earns year-round traffic</div>
+            <p class="step-p">Publish "AC tune-up checklist" in March. "Furnace pre-season inspection" in September. "Emergency heating tips" in December. This content ranks year after year and puts you in front of customers before they're in crisis mode — the highest conversion scenario in HVAC marketing.</p>
+            <span class="step-badge">Editorial Calendar</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">03</div>
+          <div>
+            <div class="step-t">Video content for compound authority</div>
+            <p class="step-p">Short videos of your technicians explaining common issues, showing job walkthroughs, or a "meet the owner" piece build deep trust. Embedding video on your site increases time-on-page — a ranking signal Google pays close attention to in competitive local markets.</p>
+            <span class="step-badge">Trust Content</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- TIMELINE -->
+      <div class="reveal">
+        <div class="section-label">What to Expect</div>
+        <h2 class="s-title">A realistic <strong>SEO timeline</strong><br>for HVAC businesses</h2>
+        <p class="body">SEO is a compounding investment. It builds on itself over time — which is exactly why starting now matters more than starting perfectly.</p>
+        <ul class="chk">
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span><strong>Month 1–2:</strong> Foundation — GBP optimized, website fixed, citations built, tracking configured</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span><strong>Month 2–4:</strong> Movement — appearing for long-tail and niche service-area keyword searches</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span><strong>Month 4–6:</strong> Traction — consistent map pack appearances, organic calls increase, reviews compound</li>
+          <li><span class="chk-ico"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span><strong>Month 6–12:</strong> Dominance — stable page-one presence, inbound leads grow month over month</li>
+        </ul>
+        <div class="callout">
+          <p>Businesses that execute this system consistently see <strong>3–5× increases in inbound leads within 6 months</strong> — without paying for ads. The HVAC companies that don't start today will be starting a year from now, competing against you.</p>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="s-card reveal">
+        <div class="s-card-title">In This Guide</div>
+        <ul class="toc">
+          <li><a href="#">Google Business Profile</a></li>
+          <li><a href="#">Website Google Trusts</a></li>
+          <li><a href="#">Reviews That Rank</a></li>
+          <li><a href="#">Citations & Authority</a></li>
+          <li><a href="#">Content That Converts</a></li>
+          <li><a href="#">Realistic Timeline</a></li>
+        </ul>
+      </div>
+
+      <div class="s-card author-wrap reveal">
+        <div class="s-card-title">Written by</div>
+        <div class="a-name">Axeon Agency</div>
+        <div class="a-role">Local SEO Specialists</div>
+        <p class="a-bio">We build premium, SEO-optimized websites and marketing systems for HVAC companies and home service businesses — designed to turn visitors into booked appointments.</p>
+      </div>
+
+      <div class="s-card cta-card reveal">
+        <div class="cta-label">Free Strategy Call</div>
+        <div class="cta-h">Want us to do this for your HVAC business?</div>
+        <p class="cta-p">We'll audit your current online presence and show you exactly what it takes to own page one in your local market — no fluff, no hard sell.</p>
+        <a class="cta-btn" href="https://axeonagency.com/#contact-us">Book Your Free Call →</a>
+      </div>
+
+    </aside>
+
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<section class="conclusion">
+  <div class="conclusion-inner reveal">
+    <h2>Every day without<br><strong>page-one visibility</strong><br>is a job handed to a competitor</h2>
+    <p>Your HVAC company deserves to be the first call homeowners make. The system exists. The methodology is clear. The only variable is whether you build it now — or let someone else build it first.</p>
+    <a class="c-btn" href="https://axeonagency.com/#contact-us">Get Your Free SEO Audit</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="f-logo" href="https://axeonagency.com/">axeon<span>.</span></a>
+  <span class="f-copy">© 2026 Axeon Agency. All rights reserved.</span>
+  <a class="f-link" href="https://axeonagency.com/#services">Our Services →</a>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 55);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Animate scroll line
+setTimeout(() => {
+  const l = document.querySelector('.scroll-line');
+  if(l) l.style.animation = 'expandLine 1.2s ease forwards';
+}, 1600);
+</script>
+</body>
+</html>
