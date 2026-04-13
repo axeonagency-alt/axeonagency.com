@@ -3107,10 +3107,11 @@
       "restaurant": { title: "Restaurants & Dining", bullets: "<li><span>Sensory Design</span>Capture your venue's experience through immersive visuals.</li><li><span>Automated Bookings</span>Turn followers into guaranteed weekend reservations.</li>" }
     };
 
-    function openMobileSheet(industryKey) {
+    function openMobileSheet(industryKey, clickedProjectId) {
       const data = mobileIndustryCopy[industryKey] || mobileIndustryCopy["hvac"];
+      // Use the clicked project ID, or fallback to the first card if not provided
       const activeCard = document.querySelector(`.pf-card[data-industry="${industryKey}"]`);
-      const projectId = activeCard ? activeCard.dataset.project : null;
+      const projectId = clickedProjectId || (activeCard ? activeCard.dataset.project : null);
       
       document.getElementById('mobileSheetContent').innerHTML = `
         <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:16px;">Our Impact</div>
@@ -3153,7 +3154,7 @@
       card.addEventListener('click', () => {
         // On mobile (< 1024px), show the industry sheet FIRST, then let them tap "View Case Study"
         if (window.innerWidth < 1024) {
-          openMobileSheet(card.dataset.industry);
+          openMobileSheet(card.dataset.industry, card.dataset.project); // <-- Passing the project ID here
           return;
         }
         // On desktop, open the full case study modal as before
