@@ -3178,15 +3178,15 @@ const COUNT      = isMobileCanvas ? 20 : 75; // Uses only 20 particles on mobile
 function resize() {
     W = window.innerWidth;
     
-    // 1. Set the height to perfectly fit the Hero section viewport
-    H = window.innerHeight;
+    // 1. Calculate height perfectly down to the top of the "Who We Serve" section
+    const startOfIndustries = document.getElementById('industries');
+    H = startOfIndustries ? startOfIndustries.offsetTop : window.innerHeight;
     
     // 2. Snap the mesh background container to this exact height
     const meshBg = document.querySelector('.mesh-bg');
     if (meshBg) {
         meshBg.style.height = H + 'px';
     }
-
 
             canvas.width  = W * DPR;
             canvas.height = H * DPR;
