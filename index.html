@@ -974,9 +974,10 @@
 
     /* 13. PERFORMANCE FIXES FOR MOBILE (Anti-Lag System) */
     /* Turns off hidden particles and blurs that destroy mobile frame rates */
-    .orb, .c-orb, .liquid-bg-contact, .pricing-bg-glow, #axeon-canvas {
-        display: none !important; 
-    }
+.orb, .c-orb, .liquid-bg-contact, .pricing-bg-glow {
+    display: none !important; 
+}
+
     
     /* Disables extremely heavy glassmorphism blurs solely on mobile */
     .pricing-card, .faq-item, .glass-form-card {
@@ -3274,7 +3275,7 @@ if (!isMobileCanvas) {
 
             return {
                 x:  Math.random() * W,
-                y:  fromBottom ? H + r * 2 + Math.random() * H * 0.5 : (Math.random() * H * 0.8) + (H * 0.2),
+                y:  fromBottom ? H + r * 2 + Math.random() * H * 0.5 : Math.random() * H,
                 vx: (Math.random() - 0.5) * 0.6 * SPEED_MULT,
                 vy: -(Math.random() * 0.4 + 0.1) * SPEED_MULT,
                 ax: 0, ay: 0,
