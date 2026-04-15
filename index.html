@@ -3175,18 +3175,18 @@ const COUNT      = isMobileCanvas ? 20 : 75; // Uses only 20 particles on mobile
         let spriteCache = new Map();
         let mouse = { x: -9999, y: -9999 };
 
-        function resize() {
-            W = window.innerWidth;
-            
-            // 1. Calculate height perfectly down to the end of the landing page
-            const endOfLanding = document.querySelector('.reveal-container');
-            H = endOfLanding ? endOfLanding.offsetTop : window.innerHeight;
-            
-            // 2. Snap the mesh background container to this exact height
-            const meshBg = document.querySelector('.mesh-bg');
-            if (meshBg) {
-                meshBg.style.height = H + 'px';
-            }
+function resize() {
+    W = window.innerWidth;
+    
+    // 1. Set the height to perfectly fit the Hero section viewport
+    H = window.innerHeight;
+    
+    // 2. Snap the mesh background container to this exact height
+    const meshBg = document.querySelector('.mesh-bg');
+    if (meshBg) {
+        meshBg.style.height = H + 'px';
+    }
+
 
             canvas.width  = W * DPR;
             canvas.height = H * DPR;
@@ -3274,7 +3274,7 @@ if (!isMobileCanvas) {
 
             return {
                 x:  Math.random() * W,
-                y:  fromBottom ? H + r * 2 + Math.random() * H * 0.5 : Math.random() * H,
+                y:  fromBottom ? H + r * 2 + Math.random() * H * 0.5 : (Math.random() * H * 0.8) + (H * 0.2),
                 vx: (Math.random() - 0.5) * 0.6 * SPEED_MULT,
                 vy: -(Math.random() * 0.4 + 0.1) * SPEED_MULT,
                 ax: 0, ay: 0,
