@@ -1617,55 +1617,6 @@ appointments.
         <span class="industry-name">Pet Grooming &amp; Salons</span>
       </div>
 
-      <!-- Landscaping -->
-      <div class="industry-card">
-  <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=70&fit=crop')"></div>
-  <div class="card-bg-overlay"></div>
-        <div class="industry-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M9 12c0-4 3-8 3-8s3 4 3 8"/><path d="M5 16c0-3 3-5 7-5s7 2 7 5"/><path d="M3 22h18"/></svg>
-        </div>
-        <span class="industry-name">Landscaping &amp; Lawn Care</span>
-      </div>
-
-      <!-- Cleaning -->
-      <div class="industry-card">
-  <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&q=70&fit=crop')"></div>
-  <div class="card-bg-overlay"></div>
-        <div class="industry-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M3 21l9-9"/><path d="M12.5 4.5a4.95 4.95 0 0 1 7 7L10 21H3v-7L12.5 4.5z"/></svg>
-        </div>
-        <span class="industry-name">Cleaning Services</span>
-      </div>
-
-      <!-- Electricians -->
-      <div class="industry-card">
-  <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=80&fit=crop')"></div>
-  <div class="card-bg-overlay"></div>
-        <div class="industry-icon-wrap">
-          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <span class="industry-name">Electricians</span>
-      </div>
-
-      <!-- Home Renovation -->
-      <div class="industry-card">
-  <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=70&fit=crop')"></div>
-  <div class="card-bg-overlay"></div>
-        <div class="industry-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <span class="industry-name">Home Renovation &amp; Remodeling</span>
-      </div>
-
-      <!-- Roofing -->
-      <div class="industry-card">
-  <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=70&fit=crop')"></div>
-  <div class="card-bg-overlay"></div>
-        <div class="industry-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M12 4L2 14h20L12 4z"/><path d="M9 20v-6h6v6"/></svg>
-        </div>
-        <span class="industry-name">Roofing Services</span>
-      </div>
 
       <!-- Dental & Med Spa -->
       <div class="industry-card">
@@ -1697,15 +1648,6 @@ appointments.
         <span class="industry-name">Restaurants &amp; Cafes</span>
       </div>
 
-      <!-- Auto Repair -->
-      <div class="industry-card">
-  <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=400&q=70&fit=crop')"></div>
-  <div class="card-bg-overlay"></div>
-        <div class="industry-icon-wrap">
-          <svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17H3v-6l2-5h11l2 5v6h-2"/><path d="M5 17h10"/><path d="M5 11h14"/></svg>
-        </div>
-        <span class="industry-name">Auto Repair &amp; Detailing</span>
-      </div>
 
     </div><!-- /.industries-grid -->
 
@@ -1752,6 +1694,415 @@ appointments.
 </script>
 <!-- ================================================ -->
 <!-- END INDUSTRIES SECTION                          -->
+<!-- ================================================ -->
+
+<!-- ================================================ -->
+<!-- PREMIUM INFINITE MARQUEE SECTION                 -->
+<!-- ================================================ -->
+<style>
+/* ── MIND-BLOWING PORTFOLIO SECTION ── */
+.premium-marquee-section {
+    background: #000000; /* Pure black creates stark contrast from the navy section below */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%); /* Ensures it forces full width regardless of padding */
+    padding: 150px 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Moving ambient light behind the marquee */
+.pm-ambient-light {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    animation: pulseLight 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulseLight {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+.pm-header {
+    text-align: center;
+    position: relative;
+    z-index: 5;
+    margin-bottom: 70px;
+}
+
+.pm-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #3b82f6; 
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.pm-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.pm-marquee-container {
+    position: relative;
+    z-index: 2;
+    width: 100vw;
+    padding: 30px 0;
+    /* The mind-blowing tilt */
+    transform: rotate(-3deg) scale(1.05);
+}
+
+.pm-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: scrollMarquee 35s linear infinite;
+}
+
+.pm-marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.pm-marquee-group {
+    display: flex;
+    align-items: center;
+}
+
+@keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Scrolls exactly one group length to seamlessly loop */
+}
+
+/* Card Design */
+.pm-card {
+    width: 380px;
+    height: 240px;
+    margin: 0 15px; /* Creates consistent gap between cards and looping groups */
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Sweeping Hover Gradient */
+.pm-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(15, 23, 42, 0.95));
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
+}
+
+.pm-card:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pm-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(96, 165, 250, 0.5);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(37, 99, 235, 0.3);
+}
+
+/* Content wrapper keeps text above the hover sweep */
+.pm-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+/* Placeholder for Logo */
+.pm-logo-placeholder {
+    width: 150px;
+    height: 55px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+}
+
+.pm-logo-placeholder span {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.pm-card:hover .pm-logo-placeholder {
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.pm-card:hover .pm-logo-placeholder span {
+    color: rgba(255, 255, 255, 1);
+}
+
+/* Card Bottom Text */
+.pm-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pm-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.02em;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.pm-tag {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.4s ease;
+}
+
+.pm-card:hover .pm-name {
+    transform: translateX(8px);
+}
+
+.pm-card:hover .pm-tag {
+    color: #e2e8f0;
+}
+
+/* Interactive Arrow */
+.pm-arrow {
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
+    width: 44px;
+    height: 44px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    opacity: 0;
+    transform: translate(-20px, 20px) rotate(-45deg); /* Arrow starts rotated */
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.pm-arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke: #0a1025;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.pm-card:hover .pm-arrow {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg); /* Twists into place */
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .pm-card { width: 320px; height: 220px; padding: 25px; }
+    .pm-name { font-size: 1.4rem; }
+}
+
+@media (max-width: 768px) {
+    .premium-marquee-section { padding: 100px 0; }
+    .pm-marquee-container { transform: rotate(-2deg) scale(1.05); }
+    .pm-card {
+        width: 280px; height: 200px; padding: 20px; margin: 0 10px;
+    }
+    .pm-logo-placeholder { width: 120px; height: 45px; }
+    .pm-name { font-size: 1.2rem; }
+    .pm-arrow { bottom: 20px; right: 20px; width: 36px; height: 36px; }
+}
+</style>
+
+<section class="premium-marquee-section" id="portfolio-marquee">
+    <div class="pm-ambient-light"></div>
+    
+    <div class="pm-header">
+        <span class="pm-eyebrow" id="pm-eyebrow">Our Work</span>
+        <h2 class="pm-title" id="pm-title">What We Have Built</h2>
+    </div>
+    
+    <div class="pm-marquee-container">
+        <div class="pm-marquee-track">
+            
+            <!-- GROUP 1 (Original 5) -->
+            <div class="pm-marquee-group">
+                <a href="portfolio.html#arctic-air" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Arctic Air</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+                
+                <a href="portfolio.html#desert-shield" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Desert Shield</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+
+                <a href="portfolio.html#desert-shield-hvac" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Desert Shield HVAC</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+
+                <a href="portfolio.html#pettie-washie" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Pettie Washie</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+
+                <a href="portfolio.html#paws-bubbles" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Paws & Bubbles</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+            </div>
+
+            <!-- GROUP 2 (Exact Duplicate to make the infinite loop flawless) -->
+            <div class="pm-marquee-group">
+                <a href="portfolio.html#arctic-air" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Arctic Air</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+                
+                <a href="portfolio.html#desert-shield" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Desert Shield</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+
+                <a href="portfolio.html#desert-shield-hvac" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Desert Shield HVAC</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+
+                <a href="portfolio.html#pettie-washie" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Pettie Washie</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+
+                <a href="portfolio.html#paws-bubbles" class="pm-card">
+                    <div class="pm-content">
+                        <div class="pm-logo-placeholder"><span>Paste Logo Here</span></div>
+                        <div class="pm-bottom">
+                            <h3 class="pm-name">Paws & Bubbles</h3>
+                            <span class="pm-tag"></span>
+                        </div>
+                    </div>
+                    <div class="pm-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+  (function () {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    // GSAP Animation for Header text sliding up
+    gsap.to(["#pm-eyebrow", "#pm-title"], {
+      opacity: 1, y: 0, duration: 1, ease: "power3.out",
+      stagger: 0.15, delay: 0.1,
+      scrollTrigger: { 
+          trigger: "#portfolio-marquee", 
+          start: "top 80%", 
+          toggleActions: "play none none reverse" 
+      }
+    });
+  })();
+</script>
+<!-- ================================================ -->
+<!-- END PREMIUM INFINITE MARQUEE SECTION             -->
 <!-- ================================================ -->
 
 
