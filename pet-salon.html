@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Get Consistent Clients for Your Pet Salon | Axeon Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', Helvetica, Arial, sans-serif;
+  background: #fff;
+  color: #111;
+  font-size: 17px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.nav-brand { font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: #111; text-decoration: none; }
+.nav-brand span { color: #111; }
+.nav-link { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #111; text-decoration: none; border-bottom: 1.5px solid #111; padding-bottom: 1px; }
+
+/* HERO */
+.hero {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 60px);
+}
+.hero-text {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 72px 80px 80px;
+  border-right: 1px solid #e8e8e8;
+}
+.hero-category {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: #888; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-category::before { content: ''; width: 24px; height: 1.5px; background: #111; }
+h1 {
+  font-size: clamp(32px, 3.5vw, 50px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #111;
+  margin-bottom: 24px;
+}
+.hero-lead {
+  font-size: 17px; font-weight: 300; color: #444; line-height: 1.75;
+  margin-bottom: 40px; max-width: 460px;
+}
+.hero-byline {
+  display: flex; align-items: center; gap: 0;
+  font-size: 12px; color: #999; font-weight: 400;
+  border-top: 1px solid #e8e8e8; padding-top: 28px;
+}
+.hero-byline strong { color: #111; font-weight: 600; margin-right: 6px; }
+.hero-byline .sep { margin: 0 12px; color: #ddd; }
+.hero-img {
+  overflow: hidden; position: relative;
+}
+.hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-img-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: #111; color: #fff;
+  font-size: 11px; font-weight: 400; letter-spacing: 0.06em;
+  padding: 12px 24px;
+}
+
+/* ARTICLE BODY */
+.article-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+/* OPENING PARAGRAPH */
+.opening-p {
+  font-size: 20px; font-weight: 400; line-height: 1.75; color: #111;
+  border-left: 3px solid #111; padding-left: 28px;
+  margin-bottom: 48px;
+}
+
+p {
+  font-size: 17px; font-weight: 300; color: #333; line-height: 1.85;
+  margin-bottom: 28px;
+}
+p strong { font-weight: 600; color: #111; }
+
+/* SECTION HEADING */
+.section-heading {
+  margin: 64px 0 24px 0;
+}
+.section-heading .tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #999; display: block; margin-bottom: 10px;
+}
+.section-heading h2 {
+  font-size: clamp(24px, 2.5vw, 34px);
+  font-weight: 700; letter-spacing: -0.02em;
+  line-height: 1.2; color: #111;
+}
+
+/* FULL WIDTH IMAGE */
+.full-img {
+  width: 100vw; position: relative; left: 50%; transform: translateX(-50%);
+  height: 520px; overflow: hidden;
+  margin: 64px 0;
+}
+.full-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.full-img figcaption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.75);
+  font-size: 12px; font-weight: 400; padding: 12px 32px;
+  letter-spacing: 0.02em;
+}
+
+/* PULL QUOTE */
+.pull-quote {
+  border-top: 2px solid #111;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 36px 0;
+  margin: 56px 0;
+}
+.pull-quote blockquote {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 500; line-height: 1.45; color: #111;
+  letter-spacing: -0.01em;
+  font-style: italic;
+}
+.pull-quote cite {
+  display: block; margin-top: 14px;
+  font-size: 12px; font-weight: 500; font-style: normal;
+  letter-spacing: 0.1em; text-transform: uppercase; color: #999;
+}
+
+/* NUMBERED STRATEGY */
+.strategy-block {
+  border-top: 1px solid #e8e8e8;
+  padding: 40px 0;
+  display: grid; grid-template-columns: 64px 1fr; gap: 32px;
+  align-items: start;
+}
+.strategy-block:last-of-type { border-bottom: 1px solid #e8e8e8; }
+.strategy-num {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #bbb; padding-top: 4px;
+}
+.strategy-body h3 {
+  font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+  color: #111; margin-bottom: 12px; line-height: 1.3;
+}
+.strategy-body p { margin-bottom: 0; font-size: 16px; }
+
+/* HALF IMG */
+.half-img-row {
+  width: 100vw; position: relative; left: 50%; transform: translateX(-50%);
+  display: grid; grid-template-columns: 1fr 1fr;
+  height: 440px; margin: 64px 0;
+}
+.half-img-row figure { overflow: hidden; position: relative; }
+.half-img-row figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.half-img-row figure figcaption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.5); color: rgba(255,255,255,0.8);
+  font-size: 11px; padding: 10px 20px; font-weight: 300; letter-spacing: 0.02em;
+}
+
+/* STATS ROW */
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #e8e8e8;
+  margin: 56px 0;
+}
+.stat-cell {
+  padding: 36px 28px; border-right: 1px solid #e8e8e8;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-val { font-size: 40px; font-weight: 700; color: #111; line-height: 1; letter-spacing: -0.03em; margin-bottom: 8px; }
+.stat-desc { font-size: 13px; font-weight: 300; color: #666; line-height: 1.5; }
+
+/* CHECKLIST BOX */
+.checklist-box {
+  background: #f7f7f7;
+  padding: 48px;
+  margin: 56px 0;
+}
+.checklist-box h3 { font-size: 22px; font-weight: 700; color: #111; margin-bottom: 28px; letter-spacing: -0.01em; }
+.checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.check-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid #e8e8e8;
+  font-size: 14px; font-weight: 400; color: #333;
+}
+.check-item:nth-last-child(-n+2) { border-bottom: none; }
+.check-dot {
+  width: 20px; height: 20px; border: 1.5px solid #111;
+  border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+}
+.check-dot::after {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; background: #111;
+}
+
+/* CTA BAND */
+.cta-band {
+  background: #111; color: #fff;
+  width: 100vw; position: relative; left: 50%; transform: translateX(-50%);
+  padding: 80px 0; margin-top: 80px;
+  text-align: center;
+}
+.cta-band h2 { font-size: clamp(28px, 3vw, 42px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; }
+.cta-band p { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.65); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.cta-btn {
+  display: inline-block;
+  background: #fff; color: #111;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; padding: 16px 40px;
+  transition: background 0.2s, color 0.2s;
+}
+.cta-btn:hover { background: #f0f0f0; }
+
+/* FOOTER */
+footer {
+  background: #fff; border-top: 1px solid #e8e8e8;
+  padding: 40px 80px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-brand { font-size: 14px; font-weight: 700; color: #111; }
+footer p { font-size: 12px; color: #aaa; }
+footer a { color: #111; text-decoration: none; font-weight: 500; }
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  nav { padding: 0 20px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-img { height: 320px; }
+  .hero-text { padding: 48px 24px; border-right: none; }
+  .half-img-row { grid-template-columns: 1fr; height: auto; }
+  .half-img-row figure { height: 300px; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stat-cell:nth-child(2) { border-right: none; }
+  .stat-cell:nth-child(3) { border-top: 1px solid #e8e8e8; }
+  .checklist-grid { grid-template-columns: 1fr; }
+  .checklist-box { padding: 28px; }
+  footer { flex-direction: column; gap: 8px; padding: 32px 24px; text-align: center; }
+  .strategy-block { grid-template-columns: 1fr; gap: 8px; }
+  .strategy-num { font-size: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://axeonagency.com/" class="nav-brand">AXEON AGENCY</a>
+  <a href="https://axeonagency.com/" class="nav-link">Visit Agency</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-text">
+    <div class="hero-category">Pet Business &mdash; Growth Strategy</div>
+    <h1>How to Get Consistent Clients for Your Pet Salon Without Relying on Walk-Ins</h1>
+    <p class="hero-lead">If your bookings depend on whoever happens to walk past your door, you don't have a business — you have a lottery. Here's how to change that permanently.</p>
+    <div class="hero-byline">
+      <strong>Axeon Agency</strong>
+      <span class="sep">|</span>
+      April 29, 2026
+      <span class="sep">|</span>
+      8 min read
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1528846104175-4fd300ee59da?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Professional groomer blow-drying a dog at pet salon">
+    <div class="hero-img-caption">Professional pet grooming &mdash; building loyalty, one client at a time</div>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="opening-p">
+    Walk-ins are unpredictable. One week you're turning people away, the next your groomers are standing around with nothing to do. The most successful pet salons — the ones with 3-month waiting lists and loyal regulars — didn't get there by luck. They built <strong>systems</strong>.
+  </p>
+
+  <p>
+    The pet grooming industry in the US alone is worth over $11 billion and growing every year. More people own pets, and more of those pet owners treat their animals like family members — meaning they're willing to spend serious money on quality care. The opportunity is real. But so is the competition.
+  </p>
+
+  <p>
+    What separates a pet salon that's fully booked three weeks out from one that scrambles to fill Thursday slots? It's not location. It's not even price. It's <strong>retention strategy</strong> — the deliberate, systematic effort to turn first-time visitors into lifelong regulars. Here's exactly how to build it.
+  </p>
+
+  <!-- FULL IMAGE 1 -->
+  <figure class="full-img">
+    <img src="https://images.unsplash.com/photo-1719464454959-9cf304ef4774?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pet groomer carefully trimming a dog with scissors">
+    <figcaption>Loyal clients bring their pets back month after month — and refer their friends</figcaption>
+  </figure>
+
+  <div class="section-heading">
+    <span class="tag">Strategy 01</span>
+    <h2>Stop relying on walk-ins — build a membership model instead</h2>
+  </div>
+
+  <p>
+    The single most powerful thing a pet salon can do is introduce a <strong>recurring membership program</strong>. Instead of hoping clients remember to call when their dog starts looking shaggy, you lock them into a monthly or bi-monthly schedule upfront. Think of it like a gym membership — except your clients actually show up, because their pet genuinely needs the service.
+  </p>
+
+  <p>
+    A basic tier might offer one full groom per month for a flat monthly fee, slightly discounted from the walk-in price. A premium tier could bundle in teeth brushing, nail grinding, and a conditioning treatment. The exact structure matters less than the commitment: when a client is paying a subscription, they don't go anywhere else. They rebook automatically. They don't price-shop. And they spend, on average, 35–40% more annually than non-members.
+  </p>
+
+  <p>
+    The key to selling memberships is framing. Don't pitch it as a "discount scheme." Position it as a <strong>dedicated care plan</strong> for their pet — regular grooming actually improves coat health, reduces matting, and catches skin issues early. That's a genuinely compelling reason to commit, and it's true.
+  </p>
+
+  <div class="pull-quote">
+    <blockquote>"A client on a membership plan is worth 3x more over a year than a walk-in. You don't need more clients — you need to keep the ones you already have."</blockquote>
+    <cite>— Axeon Agency, Pet Business Growth Report</cite>
+  </div>
+
+  <div class="section-heading">
+    <span class="tag">Strategy 02</span>
+    <h2>Automated rebooking reminders — set it once, fill your calendar forever</h2>
+  </div>
+
+  <p>
+    Most pet owners genuinely intend to rebook. Life gets busy, they forget, and six weeks turns into four months. That's not disloyalty — it's just human nature. Your job is to remove the friction by reminding them <strong>before they even think to look for someone else</strong>.
+  </p>
+
+  <p>
+    With modern booking tools like Vagaro, Boulevard, or even a simple integration via Mailchimp or Twilio, you can set up an automated SMS or email sequence that fires exactly 3–4 weeks after each appointment. Something as simple as: <em>"Hey Sarah — it's been 4 weeks since Bella's last groom! Ready to rebook? Click here to pick a time."</em>
+  </p>
+
+  <p>
+    This message, when personalised with the pet's name, converts at over 35% on average. You set it up once. It runs forever. It costs pennies per message. And it's the closest thing to a guaranteed revenue stream a service business can have without a formal subscription model.
+  </p>
+
+  <!-- HALF IMAGE ROW -->
+  <div class="half-img-row">
+    <figure>
+      <img src="https://images.unsplash.com/photo-1625321171045-1fea4ac688e9?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Groomer washing and bathing a dog at pet salon">
+      <figcaption>Regular grooming appointments keep coats healthy and clients loyal</figcaption>
+    </figure>
+    <figure>
+      <img src="https://images.unsplash.com/photo-1581888227599-779811939961?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pet groomer trimming dog fur with professional scissors">
+      <figcaption>A happy pet means a returning owner — and glowing reviews</figcaption>
+    </figure>
+  </div>
+
+  <div class="section-heading">
+    <span class="tag">Strategy 03</span>
+    <h2>Your Google Business profile is your most valuable marketing asset</h2>
+  </div>
+
+  <p>
+    Before a pet owner books anywhere, they search. "Dog groomer near me." "Best pet salon in [city]." "Dog grooming [neighbourhood]." These searches happen millions of times a day, and <strong>78% of them result in a visit or booking within 24 hours</strong>. If your Google Business profile isn't optimised, you're invisible to the highest-intent customers in your area.
+  </p>
+
+  <p>
+    Optimising your profile takes a few hours and costs nothing. Update your hours. Add real photos — of your salon, your team, your freshly groomed clients (with owner permission). Write a genuine business description. Enable messaging. Most importantly: <strong>respond to every review</strong>. A salon with 40 reviews and consistent owner responses will outrank a competitor with 100 reviews and silence, every time. Google rewards engagement, and so do customers.
+  </p>
+
+  <p>
+    Once the basics are done, post a short update every week. A photo of a great groom. A tip on managing summer shedding. An announcement of a new service. These posts take five minutes and signal to Google that you're an active, relevant business — which pushes you higher in local results over time.
+  </p>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-val">78%</div>
+      <div class="stat-desc">of "near me" searches result in a booking within 24 hours</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">35%</div>
+      <div class="stat-desc">rebooking rate from a single automated reminder SMS</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">5×</div>
+      <div class="stat-desc">cheaper to retain an existing client than acquire a new one</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">40%</div>
+      <div class="stat-desc">more annual spend from loyalty members vs one-time visitors</div>
+    </div>
+  </div>
+
+  <div class="section-heading">
+    <span class="tag">Strategy 04</span>
+    <h2>Social media: before/after content is your best free advertising</h2>
+  </div>
+
+  <p>
+    Pet content performs extraordinarily well on social media. Before and after grooming transformations — a scruffy, overgrown dog arriving, then that same dog leaving clean, shaped, and clearly delighted — are among the most shared and saved posts on Instagram and TikTok. They're visual proof of your skill, and they do your marketing for you.
+  </p>
+
+  <p>
+    You don't need fancy equipment. A decent smartphone, good lighting, and a consistent posting schedule will outperform expensive production every time. Post three times a week. Use your city and neighbourhood in your captions and hashtags. Tag the owner (when they consent) — they'll share it to their network, putting your work in front of dozens of other local pet owners who've never heard of you.
+  </p>
+
+  <p>
+    Include a clear booking link in your bio. Use Instagram's "Book Now" button. Make it zero-friction for someone who discovers you through a Reel to turn into a booked appointment in under 60 seconds. Every extra step between interest and booking loses you customers.
+  </p>
+
+  <!-- FULL IMAGE 2 -->
+  <figure class="full-img">
+    <img src="https://plus.unsplash.com/premium_photo-1661270494698-9eda61a4a814?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Professional pet groomer finishing a groom at pet salon">
+    <figcaption>Content like this — a freshly groomed, happy pet — routinely generates thousands of shares and new bookings</figcaption>
+  </figure>
+
+  <div class="section-heading">
+    <span class="tag">Strategy 05</span>
+    <h2>Build a referral system that works while you sleep</h2>
+  </div>
+
+  <p>
+    Word-of-mouth is still the #1 source of new clients for most local pet salons. Someone asks at the dog park "where do you get him groomed?" — and a name gets mentioned. The problem is that this happens passively, randomly, and you have no control over it. A structured referral program changes that.
+  </p>
+
+  <p>
+    The mechanics are simple: every client who refers a friend gets a reward — a free add-on service, a discount on their next appointment, or a small product. The new client gets a first-visit discount. Print it on a card. Add it to your confirmation emails. Mention it at checkout. Most salons that implement this see a <strong>20–30% increase in new client volume</strong> within the first 90 days, at almost zero cost.
+  </p>
+
+  <div class="section-heading">
+    <span class="tag">Strategy 06</span>
+    <h2>Upsells and add-ons: grow revenue without a single new client</h2>
+  </div>
+
+  <p>
+    Most pet salon owners underestimate how willing their existing clients are to spend more — they just need to be asked. A client bringing in their dog for a $45 bath has no idea you offer a $15 conditioning treatment, a $12 teeth brushing, or a $10 nail grinding service unless someone tells them.
+  </p>
+
+  <p>
+    Train your front desk and groomers to mention two relevant add-ons at every single appointment. Not pushy — just informative. "We also do a blueberry facial scrub which is great for their skin in summer, would you like to add that?" The average ticket goes from $45 to $65. Over 200 appointments a month, that's an extra $4,000 in revenue. No new marketing. No new clients. Just a better conversation at checkout.
+  </p>
+
+  <!-- ALL STRATEGIES SUMMARY -->
+  <div class="section-heading">
+    <span class="tag">Summary</span>
+    <h2>The six strategies — at a glance</h2>
+  </div>
+
+  <div class="strategy-block">
+    <div class="strategy-num">01</div>
+    <div class="strategy-body">
+      <h3>Introduce a membership program</h3>
+      <p>Monthly or bi-monthly plans that lock in recurring revenue and make your clients immune to competitor poaching. Position it as a pet care plan, not a discount.</p>
+    </div>
+  </div>
+  <div class="strategy-block">
+    <div class="strategy-num">02</div>
+    <div class="strategy-body">
+      <h3>Automate your rebooking reminders</h3>
+      <p>Personalised SMS or email sent 3–4 weeks post-appointment. Set up once, runs forever, converts at 35%+ with almost zero cost per message.</p>
+    </div>
+  </div>
+  <div class="strategy-block">
+    <div class="strategy-num">03</div>
+    <div class="strategy-body">
+      <h3>Dominate your Google Business profile</h3>
+      <p>Complete profile, real photos, weekly posts, responses to every review. The highest-ROI free marketing channel for any local pet business.</p>
+    </div>
+  </div>
+  <div class="strategy-block">
+    <div class="strategy-num">04</div>
+    <div class="strategy-body">
+      <h3>Post before/after content consistently</h3>
+      <p>Three posts a week on Instagram and TikTok. Before/after transformations, grooming tips, local hashtags, direct booking link in bio. Simple and devastatingly effective.</p>
+    </div>
+  </div>
+  <div class="strategy-block">
+    <div class="strategy-num">05</div>
+    <div class="strategy-body">
+      <h3>Formalise your referral program</h3>
+      <p>Reward existing clients for bringing in friends. Print the cards, add it to emails, mention it at checkout. Expect 20–30% new client growth in 90 days.</p>
+    </div>
+  </div>
+  <div class="strategy-block">
+    <div class="strategy-num">06</div>
+    <div class="strategy-body">
+      <h3>Upsell add-ons at every appointment</h3>
+      <p>Two relevant add-on suggestions per visit. Average ticket increases by $15–25. Over 200 monthly appointments, that's thousands in extra monthly revenue — no new clients needed.</p>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="checklist-box">
+    <h3>Your pet salon action checklist</h3>
+    <div class="checklist-grid">
+      <div class="check-item"><div class="check-dot"></div>Google Business profile 100% complete</div>
+      <div class="check-item"><div class="check-dot"></div>At least one membership tier live</div>
+      <div class="check-item"><div class="check-dot"></div>Automated rebooking reminder set up</div>
+      <div class="check-item"><div class="check-dot"></div>Referral card printed and at front desk</div>
+      <div class="check-item"><div class="check-dot"></div>Instagram/TikTok posting 3x per week</div>
+      <div class="check-item"><div class="check-dot"></div>Online booking enabled on your website</div>
+      <div class="check-item"><div class="check-dot"></div>Add-on menu displayed at checkout</div>
+      <div class="check-item"><div class="check-dot"></div>Review request automated post-visit</div>
+      <div class="check-item"><div class="check-dot"></div>Booking link in all social bios</div>
+      <div class="check-item"><div class="check-dot"></div>Client database in a CRM or booking tool</div>
+    </div>
+  </div>
+
+  <p>
+    None of this requires a big marketing budget. It requires consistency, a bit of setup time, and the discipline to do the unglamorous things week after week. The salons that implement even three of these six strategies see measurable results within 60 days. All six together? That's a fully booked calendar, a loyal client base, and a business that isn't at the mercy of the weather, the day of the week, or who happens to walk past.
+  </p>
+
+  <p>
+    If you want help setting any of this up — from your Google presence to automated booking flows and social strategy — that's exactly what we do at Axeon Agency. We work with local service businesses to build the digital systems that drive consistent, scalable growth.
+  </p>
+
+</article>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to build a fully-booked salon?</h2>
+  <p>We help pet businesses build the digital systems that bring clients back — month after month, automatically.</p>
+  <a href="https://axeonagency.com/" class="cta-btn">Talk to Axeon Agency</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">AXEON AGENCY</div>
+  <p>&copy; 2026 &nbsp;&middot;&nbsp; <a href="https://axeonagency.com/">axeonagency.com</a> &nbsp;&middot;&nbsp; Digital Growth for Ambitious Businesses</p>
+</footer>
+
+</body>
+</html>
