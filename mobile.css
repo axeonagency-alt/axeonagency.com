@@ -1,0 +1,200 @@
+/* Mobile Optimization CSS for Axeon */
+
+/* Tablet & Mobile (max-width: 991px) */
+@media (max-width: 991px) {
+  /* Layout: Stack grids */
+  .grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+
+  [style*="grid-column"] {
+    grid-column: auto !important;
+  }
+
+  /* Padding adjustments */
+  .section {
+    padding: 8vh 0 !important;
+  }
+  .section.large {
+    padding: 12vh 0 !important;
+  }
+  .container {
+    padding: 0 6vw !important;
+  }
+
+  /* Typography Scaling */
+  /* Target general headings but allow specific inline overrides if needed */
+  .heading-impact {
+    font-size: clamp(3rem, 15vw, 6rem) !important;
+  }
+  .heading-nineties:not(.team-overlay-left h3):not(.team-overlay-right h3), 
+  .heading-spartan:not(.team-overlay-left h3):not(.team-overlay-right h3) {
+    font-size: clamp(2rem, 10vw, 4rem) !important;
+  }
+  .heading-regular {
+    font-size: clamp(1.8rem, 8vw, 3rem) !important;
+  }
+  .heading-coliner {
+    font-size: clamp(4rem, 18vw, 8rem) !important;
+  }
+  .hero-title p {
+    font-size: 1.25rem !important;
+  }
+
+  /* Footer Adjustments */
+  .footer-huge {
+    font-size: clamp(3rem, 16vw, 8rem) !important;
+    margin-bottom: 4vh !important;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .footer-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Specific Sections */
+  .serve-text {
+    font-size: clamp(1.4rem, 5vw, 2rem) !important;
+  }
+  
+  /* Form Mobile Optimization */
+  .form-group {
+    grid-column: span 12 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  form {
+    padding: 2rem 1.5rem !important;
+  }
+  
+  /* Navbar and Mobile Menu Styles */
+  .navbar {
+    padding: 1.5rem 5vw !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    z-index: 1002 !important; /* Ensure navbar is above everything */
+  }
+  .navbar.solid {
+    background: var(--bg-color) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+  
+  .nav-logo {
+    z-index: 1003 !important;
+    position: relative;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 1003 !important;
+    background: transparent;
+    border: none;
+    position: relative;
+    padding: 0;
+  }
+  
+  .mobile-menu-btn span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--text-color) !important; /* Force visibility */
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s ease;
+    border-radius: 2px;
+  }
+  
+  .mobile-menu-btn.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-menu-btn.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-color);
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateY(-100%);
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 1001 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .nav-link {
+    font-size: 2.5rem !important;
+    font-weight: 600 !important;
+    color: var(--text-color) !important;
+  }
+  
+  .nav-link.btn {
+    margin-top: 1rem;
+    font-size: 1.25rem !important;
+  }
+}
+
+/* Mobile Only (max-width: 767px) */
+@media (max-width: 767px) {
+  .hero-title .btn-container, .hero-title > div {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .hero-title .btn {
+    width: 100%;
+  }
+  .nav-link {
+    font-size: 2rem !important;
+  }
+
+  /* Fix for Team Overlays on About Page covering faces */
+  #team-image-container {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+  }
+  
+  #team-image-container > div[style*="linear-gradient"] {
+    display: none !important; /* Hide the gradient overlay on mobile */
+  }
+
+  .team-overlay-left, .team-overlay-right {
+    position: static !important;
+    text-align: left !important;
+    max-width: 100% !important;
+    padding: 2rem 5vw !important;
+    background: var(--bg-color) !important;
+    width: 100% !important;
+  }
+  
+  .team-overlay-left h3, .team-overlay-right h3 {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+    color: var(--text-color) !important;
+  }
+}
