@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Axeon.</title>
+  <meta name="description" content="Axeon.'s privacy policy — how we collect, use, and protect your information." />
+  <style>
+@font-face{font-family:'Neue Montreal';src:url('https://cdn.prod.website-files.com/68d958ba50e5b8ce718345d4/68d958ba50e5b8ce718345e0_PPNeueMontreal-SemiBold.otf') format('opentype');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Montreal';src:url('https://cdn.prod.website-files.com/68d958ba50e5b8ce718345d4/68d958ba50e5b8ce718345e2_PPNeueMontreal-Medium.otf') format('opentype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Montreal';src:url('https://cdn.prod.website-files.com/68d958ba50e5b8ce718345d4/68d958ba50e5b8ce718345e1_PPNeueMontreal-Regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Perfectly Nineties';src:url('https://cdn.prod.website-files.com/67fcd4974b30a00d13095550/67fcd59c2cd14e669edef8c5_PerfectlyNineties-Black.otf') format('opentype');font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:'Perfectly Nineties';src:url('https://cdn.prod.website-files.com/67fcd4974b30a00d13095550/67fcd59caa79d68d8f41d825_PerfectlyNineties-Regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+
+:root {
+  --font-body: 'Neue Montreal', sans-serif;
+  --font-heading: 'Perfectly Nineties', serif;
+}
+
+body {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --text-secondary: #2b2b2b;
+  --border-color: rgba(0,0,0,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { width: 100%; max-width: 860px; margin: 0 auto; padding: 0 5vw; }
+.section { padding: 7vh 0 10vh; }
+
+h1, h2, h3 { font-weight: normal; color: var(--text-color); line-height: 1.1; }
+
+.heading-nineties {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.updated {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 3rem;
+}
+
+.intro-p {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin-bottom: 3rem;
+}
+
+/* Table of contents */
+.toc {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.8rem 0;
+  margin-bottom: 4rem;
+}
+.toc-title {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+.toc ol {
+  list-style: none;
+  columns: 2;
+  column-gap: 2.5rem;
+}
+.toc li { margin-bottom: 0.6rem; break-inside: avoid; }
+.toc a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.toc a:hover { border-bottom-color: var(--text-color); }
+.toc .num { color: var(--text-secondary); margin-right: 0.5rem; }
+
+/* Policy sections */
+.policy-section { padding-top: 3rem; border-top: 1px solid var(--border-color); }
+.policy-section:first-of-type { border-top: none; padding-top: 0; }
+
+.policy-section h2 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+.policy-section h2 .section-num {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.policy-section h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-top: 1.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.policy-section p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+  max-width: 720px;
+}
+
+.policy-section ul, .policy-section ol.sub-list {
+  margin: 0 0 1.4rem 0;
+  max-width: 720px;
+}
+.policy-section li {
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.7rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.55;
+}
+.policy-section li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-color);
+}
+.policy-section li strong { color: var(--text-color); font-weight: 600; }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 2rem;
+  font-size: 0.98rem;
+}
+.data-table th, .data-table td {
+  text-align: left;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+.data-table th {
+  color: var(--text-color);
+  font-weight: 600;
+  background: rgba(0,0,0,0.03);
+}
+
+.note-box {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  margin: 1.5rem 0 2rem;
+  max-width: 720px;
+}
+.note-box p { margin-bottom: 0; font-size: 0.98rem; }
+.note-box p strong { color: var(--text-color); }
+
+.contact-block {
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-color);
+}
+.contact-block h2 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+  margin-bottom: 1rem;
+}
+.contact-block p { color: var(--text-secondary); font-size: 1.05rem; max-width: 650px; margin-bottom: 1.8rem; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem 2.3rem;
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.05rem;
+  border: 1px solid var(--text-color);
+  color: var(--bg-color);
+  background-color: var(--text-color);
+  transition: opacity 0.3s;
+}
+.btn:hover { opacity: 0.8; }
+
+a { color: var(--text-color); }
+
+@media (max-width: 640px) {
+  .toc ol { columns: 1; }
+  .container { padding: 0 6vw; }
+}
+  </style>
+  <!-- Premium Features Styles -->
+  <link rel="stylesheet" href="premium-features.css">
+  
+  <!-- Hotjar Tracking Code for Axeon Agency -->
+  <script>
+      (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+          h._hjSettings={hjid:5128030,hjsv:6};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "o0hf1qyz9e");
+  </script>
+</head>
+<body>
+
+  <div class="section">
+    <div class="container">
+
+      <h1 class="heading-nineties">Privacy Policy</h1>
+      <p class="updated">Effective date: July 3, 2026 &nbsp;•&nbsp; Last updated: July 3, 2026</p>
+
+      <p class="intro-p">
+        This Privacy Policy explains how axeon. ("axeon.," "we," "us," or "our") collects, uses, discloses, and
+        protects information when you visit our website or contact us through it. We work with clients across
+        India, the United States, the United Kingdom, the European Union, and Australia, and this policy is
+        written to meet the standards of each region's applicable privacy laws, including the GDPR (EU/UK), the
+        UK GDPR and Data Protection Act 2018, India's Digital Personal Data Protection Act (DPDPA), the
+        California Consumer Privacy Act (CCPA/CPRA), and Australia's Privacy Act 1988.
+      </p>
+
+      <nav class="toc">
+        <div class="toc-title">On this page</div>
+        <ol>
+          <li><a href="#information-we-collect"><span class="num">01</span>Information We Collect</a></li>
+          <li><a href="#how-we-use"><span class="num">02</span>How We Use Your Information</a></li>
+          <li><a href="#legal-basis"><span class="num">03</span>Our Legal Basis for Processing</a></li>
+          <li><a href="#cookies"><span class="num">04</span>Cookies &amp; Tracking</a></li>
+          <li><a href="#sharing"><span class="num">05</span>How We Share Information</a></li>
+          <li><a href="#retention"><span class="num">06</span>Data Retention</a></li>
+          <li><a href="#security"><span class="num">07</span>Data Security</a></li>
+          <li><a href="#transfers"><span class="num">08</span>International Data Transfers</a></li>
+          <li><a href="#rights"><span class="num">09</span>Your Privacy Rights</a></li>
+          <li><a href="#children"><span class="num">10</span>Children's Privacy</a></li>
+          <li><a href="#changes"><span class="num">11</span>Changes to This Policy</a></li>
+          <li><a href="#contact"><span class="num">12</span>Contact Us</a></li>
+        </ol>
+      </nav>
+
+      <div class="policy-section" id="information-we-collect">
+        <h2><span class="section-num">01</span>Information We Collect</h2>
+        <p>
+          We keep the information we collect deliberately limited. We do not use analytics tools, advertising
+          pixels, or third-party tracking scripts on our website. The only information we collect is what you
+          choose to give us directly.
+        </p>
+        <h3>Information you provide to us</h3>
+        <p>When you submit our contact form, or otherwise reach out to us by email, we may collect:</p>
+        <ul>
+          <li><strong>Identity information</strong> — such as your name and the company or organization you represent.</li>
+          <li><strong>Contact information</strong> — such as your email address and, if provided, phone number.</li>
+          <li><strong>Project details</strong> — any information you choose to share about your business, goals, or the services you're inquiring about.</li>
+          <li><strong>Any other information</strong> you voluntarily include in your message to us.</li>
+        </ul>
+        <h3>Information collected automatically</h3>
+        <p>
+          Our website does not use cookies for analytics, advertising, or behavioral tracking. Our hosting and
+          security infrastructure may automatically log basic technical data — such as IP address, browser type,
+          and access timestamps — for the sole purpose of maintaining site security and preventing abuse (for
+          example, spam or fraudulent form submissions). This data is not used to build a profile of you or to
+          track you across other websites.
+        </p>
+      </div>
+
+      <div class="policy-section" id="how-we-use">
+        <h2><span class="section-num">02</span>How We Use Your Information</h2>
+        <p>We use the information you provide solely to:</p>
+        <ul>
+          <li>Respond to your inquiry and communicate with you about our services;</li>
+          <li>Prepare proposals, quotes, or project scopes if you engage us;</li>
+          <li>Maintain records of client and prospective client communications;</li>
+          <li>Comply with legal, tax, or accounting obligations; and</li>
+          <li>Protect the security and integrity of our website and systems.</li>
+        </ul>
+        <p>We do not use your information for automated decision-making or profiling, and we do not sell your personal information.</p>
+      </div>
+
+      <div class="policy-section" id="legal-basis">
+        <h2><span class="section-num">03</span>Our Legal Basis for Processing</h2>
+        <p>For visitors in the EU, UK, and other regions with similar requirements, we process your information based on:</p>
+        <ul>
+          <li><strong>Consent</strong> — when you voluntarily submit the contact form.</li>
+          <li><strong>Legitimate interests</strong> — to respond to inquiries and maintain the security of our website, in a way that does not override your rights.</li>
+          <li><strong>Contractual necessity</strong> — where processing is required to provide services you've engaged us for.</li>
+          <li><strong>Legal obligation</strong> — where we're required to retain certain records (e.g. for tax purposes).</li>
+        </ul>
+        <p>For visitors in India, we process personal data in accordance with the DPDPA, relying on your consent at the point of submission and, where applicable, legitimate uses permitted under the Act.</p>
+      </div>
+
+      <div class="policy-section" id="cookies">
+        <h2><span class="section-num">04</span>Cookies &amp; Tracking</h2>
+        <div class="note-box">
+          <p><strong>We do not use analytics, advertising, or marketing cookies on this website.</strong> No third-party tracking scripts (such as Google Analytics or Meta Pixel) are installed on our pages.</p>
+        </div>
+        <p>
+          Our website may use only strictly necessary technical cookies or local storage required for basic
+          functionality, such as remembering form input during your session. These do not track you across
+          other sites and are not used for advertising purposes. If this changes in the future, we will update
+          this section and, where legally required, request your consent before doing so.
+        </p>
+      </div>
+
+      <div class="policy-section" id="sharing">
+        <h2><span class="section-num">05</span>How We Share Information</h2>
+        <p>We do not sell, rent, or trade your personal information. We may share limited information only with:</p>
+        <table class="data-table">
+          <thead>
+            <tr><th>Recipient</th><th>Purpose</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Email &amp; form-processing providers</td><td>To receive and route contact form submissions to us.</td></tr>
+            <tr><td>Website hosting provider</td><td>To securely host and serve our website.</td></tr>
+            <tr><td>Professional advisors</td><td>Accountants or legal counsel, where necessary and under confidentiality obligations.</td></tr>
+            <tr><td>Legal &amp; regulatory authorities</td><td>Only where required by law, court order, or to protect our legal rights.</td></tr>
+          </tbody>
+        </table>
+        <p>Any third party that processes information on our behalf is contractually required to protect it and use it only for the purpose we specify.</p>
+      </div>
+
+      <div class="policy-section" id="retention">
+        <h2><span class="section-num">06</span>Data Retention</h2>
+        <p>
+          We retain contact form submissions and related correspondence only for as long as needed to respond to
+          your inquiry, manage an ongoing client relationship, or meet legal and accounting obligations —
+          typically no longer than 24 months after our last contact, unless a longer period is required by law
+          or you have an active engagement with us. You may request earlier deletion at any time (see
+          <a href="#rights">Your Privacy Rights</a>).
+        </p>
+      </div>
+
+      <div class="policy-section" id="security">
+        <h2><span class="section-num">07</span>Data Security</h2>
+        <p>
+          We apply reasonable technical and organizational measures to protect the information you share with
+          us, including restricted access to submitted data, secure transmission of form submissions, and
+          limiting collection to what's genuinely necessary. No method of transmission or storage is 100%
+          secure, but we work to protect your information to industry standards appropriate for a business of
+          our size.
+        </p>
+      </div>
+
+      <div class="policy-section" id="transfers">
+        <h2><span class="section-num">08</span>International Data Transfers</h2>
+        <p>
+          Because we work with clients across India, the US, the UK, the EU, and Australia, information you
+          share with us may be processed or stored in a country other than your own. Where we transfer personal
+          data out of the EU/UK, we rely on appropriate safeguards such as Standard Contractual Clauses or
+          equivalent mechanisms recognized under GDPR and UK GDPR. We take steps to ensure any such transfer
+          provides a comparable level of protection to that required in your home jurisdiction.
+        </p>
+      </div>
+
+      <div class="policy-section" id="rights">
+        <h2><span class="section-num">09</span>Your Privacy Rights</h2>
+        <p>Depending on where you're located, you may have some or all of the following rights regarding your personal information:</p>
+        <ul>
+          <li><strong>Access</strong> — request a copy of the personal information we hold about you.</li>
+          <li><strong>Correction</strong> — ask us to correct inaccurate or incomplete information.</li>
+          <li><strong>Deletion</strong> — request that we delete your personal information, subject to legal retention requirements.</li>
+          <li><strong>Restriction or objection</strong> — ask us to limit how we use your information, or object to certain processing.</li>
+          <li><strong>Portability</strong> — request your information in a portable format, where applicable.</li>
+          <li><strong>Withdraw consent</strong> — withdraw consent at any time where processing is based on consent, without affecting prior processing.</li>
+          <li><strong>Lodge a complaint</strong> — with your local data protection authority (e.g. a Data Protection Board, ICO, DPA, or OAIC) if you believe your rights have been violated.</li>
+        </ul>
+        <p>To exercise any of these rights, contact us using the details below. We will respond within the timeframe required by applicable law in your region.</p>
+      </div>
+
+      <div class="policy-section" id="children">
+        <h2><span class="section-num">10</span>Children's Privacy</h2>
+        <p>
+          Our website and services are intended for businesses and individuals aged 18 and older. We do not
+          knowingly collect personal information from children. If you believe a child has provided us with
+          personal information, please contact us and we will promptly delete it.
+        </p>
+      </div>
+
+      <div class="policy-section" id="changes">
+        <h2><span class="section-num">11</span>Changes to This Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time to reflect changes in our practices or legal
+          requirements. Any changes will be posted on this page with a revised "Last updated" date. We encourage
+          you to review this page periodically.
+        </p>
+      </div>
+
+      <div class="contact-block" id="contact">
+        <h2><span class="section-num">12</span>Contact Us</h2>
+        <p>
+          If you have questions about this Privacy Policy, want to exercise a privacy right, or would like us to
+          delete your information, reach out to us directly:
+        </p>
+        <p style="margin-bottom: 0.4rem;"><strong style="color:#000;">Email:</strong> <a href="mailto:hello@axeonagency.com">hello@axeonagency.com</a></p>
+        <p style="margin-bottom: 2rem;"><strong style="color:#000;">Subject line:</strong> "Privacy Request" — so it reaches the right person quickly.</p>
+        <a href="mailto:hello@axeonagency.com" class="btn">Contact Us About Privacy</a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
