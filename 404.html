@@ -1,0 +1,49 @@
+﻿ï»¿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0">
+  <script>
+    // GitHub Pages clean URL redirect script
+    // Converts /about &acirc;â€ &rsquo; /about.html, /blog &acirc;â€ &rsquo; /blog.html, etc.
+    (function() {
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+
+      // Clean URL map
+      var routes = {
+        '/about':             '/about.html',
+        '/work':              '/work.html',
+        '/blog':              '/blog.html',
+        '/contact':           '/contact.html',
+        '/faqs':              '/FAQs.html',
+        '/faq':               '/FAQs.html',
+        '/brand-identity':    '/Brand-Identity.html',
+        '/web-design':        '/Web design.html',
+        '/web-development':   '/web development.html',
+        '/seo':               '/SEO&AEO.html',
+        '/seo-aeo':           '/SEO&AEO.html',
+        '/privacy-policy':    '/privacy-policy.html',
+        '/terms':             '/terms-and-conditions.html',
+        '/terms-and-conditions': '/terms-and-conditions.html',
+        '/blog/1':            '/blog1.html',
+        '/blog/2':            '/blog2.html',
+        '/blog/3':            '/blog3.html',
+        '/blog/4':            '/blog4.html',
+      };
+
+      var lowPath = path.toLowerCase().replace(/\/$/, '');
+      var destination = routes[lowPath];
+
+      if (destination) {
+        // Store the intended URL so SPA-style redirect keeps the clean URL
+        sessionStorage.setItem('axeon_redirect', path + search + hash);
+        window.location.replace(destination + search + hash);
+      }
+    })();
+  </script>
+  <title>Redirecting&acirc;â‚¬Â¦ &acirc;â‚¬â€ Axeon Agency</title>
+</head>
+<body></body>
+</html>
