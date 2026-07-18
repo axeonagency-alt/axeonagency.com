@@ -1,0 +1,703 @@
+/* ============================================================
+   AXEON AGENCY — PREMIUM MOBILE CSS
+   Mobile-first, pixel-perfect, buttery smooth
+   Inspired by Framer/Budarina-level mobile polish
+   ============================================================ */
+
+/* ── GLOBAL MOBILE RESETS ─────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Disable native smooth scroll — Lenis is disabled on mobile,
+     and browser smooth scroll can conflict with touch momentum */
+  scroll-behavior: auto;
+}
+
+img, video, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── GLOBAL NAVBAR OVERRIDES ─────────────────────────────── */
+.nav-logo, .nav-logo:hover, .nav-logo:active, .nav-logo:focus {
+  font-family: var(--font-body) !important;
+  font-weight: 500 !important;
+  font-size: 1.8rem !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+  opacity: 1 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* ── TABLET & MOBILE (max-width: 991px) ───────────────────── */
+@media (max-width: 991px) {
+
+  /* ─────────────────────────────────────────────────────────
+     PERFORMANCE: GPU-composite every painted layer
+     This is the single biggest win for smooth mobile scrolling
+  ───────────────────────────────────────────────────────── */
+  body {
+    /* Native momentum scrolling — buttery on iOS/Android */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+  }
+
+  /* Promote heavy animated elements to their own GPU layer */
+  .hero-title,
+  .heading-coliner,
+  .serve-section,
+  .serve-text,
+  #ai-section,
+  .footer-huge,
+  .service-row {
+    will-change: auto; /* let browser decide — avoids memory bloat */
+    transform: translateZ(0); /* force GPU layer */
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     LAYOUT
+  ───────────────────────────────────────────────────────── */
+  .grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+
+  [style*="grid-column"] {
+    grid-column: auto !important;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     SPACING
+  ───────────────────────────────────────────────────────── */
+  .section {
+    padding: 10vh 0 !important;
+  }
+  .section.large {
+    padding: 14vh 0 !important;
+  }
+  .container {
+    padding: 0 6vw !important;
+    max-width: 100% !important;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     FLUID TYPOGRAPHY
+  ───────────────────────────────────────────────────────── */
+  .heading-impact {
+    font-size: clamp(2.8rem, 14vw, 6rem) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em !important;
+  }
+  .heading-nineties:not(.team-overlay-left h3):not(.team-overlay-right h3),
+  .heading-spartan:not(.team-overlay-left h3):not(.team-overlay-right h3) {
+    font-size: clamp(2rem, 10vw, 4rem) !important;
+    line-height: 1.1 !important;
+  }
+  .heading-regular {
+    font-size: clamp(1.7rem, 7.5vw, 3rem) !important;
+    line-height: 1.2 !important;
+  }
+  .heading-coliner {
+    font-size: clamp(3.5rem, 17vw, 8rem) !important;
+  }
+  .hero-title p {
+    font-size: clamp(1rem, 4vw, 1.3rem) !important;
+    line-height: 1.65 !important;
+    max-width: 90% !important;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     FOOTER
+  ───────────────────────────────────────────────────────── */
+  .footer-huge {
+    font-size: clamp(2.8rem, 15vw, 7rem) !important;
+    margin-bottom: 5vh !important;
+    line-height: 1 !important;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+  .footer-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     MISC SECTIONS
+  ───────────────────────────────────────────────────────── */
+  .serve-text {
+    font-size: clamp(1.3rem, 5vw, 2rem) !important;
+    line-height: 1.4 !important;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     FORMS
+  ───────────────────────────────────────────────────────── */
+  .form-group {
+    grid-column: span 12 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  form {
+    padding: 2rem 1.5rem !important;
+  }
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    border-radius: 8px !important;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     NAVBAR — transparent by default, no black header
+  ───────────────────────────────────────────────────────── */
+  .navbar {
+    padding: 1.25rem 5vw !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    z-index: 1002 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    /* Smooth hide/show on scroll */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s ease,
+                backdrop-filter 0.3s ease !important;
+  }
+
+  /* Only apply solid background after user scrolls */
+  .navbar.solid {
+    background: rgba(var(--bg-color-rgb, 0, 43, 186), 0.92) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  }
+
+  /* Remove any inline background-color that might create black header */
+  .navbar:not(.solid) {
+    background-color: transparent !important;
+  }
+
+  .nav-logo {
+    z-index: 1003 !important;
+    position: relative !important;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     HAMBURGER BUTTON
+  ───────────────────────────────────────────────────────── */
+  .mobile-menu-btn {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+    width: 44px !important;
+    height: 44px !important;
+    cursor: pointer !important;
+    z-index: 1003 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    position: relative !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    border-radius: 50% !important;
+    transition: background 0.3s ease !important;
+  }
+  .mobile-menu-btn:hover {
+    background: rgba(255,255,255,0.06) !important;
+  }
+
+  .mobile-menu-btn span {
+    display: block !important;
+    height: 2px !important;
+    background-color: var(--text-color) !important;
+    border-radius: 2px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    transform-origin: center !important;
+    transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1),
+                opacity 0.3s ease,
+                width 0.3s ease !important;
+  }
+  .mobile-menu-btn span:nth-child(1) { width: 22px !important; }
+  .mobile-menu-btn span:nth-child(2) { width: 16px !important; }
+  .mobile-menu-btn span:nth-child(3) { width: 22px !important; }
+
+  .mobile-menu-btn.active span:nth-child(1) {
+    width: 22px !important;
+    transform: translateY(7px) rotate(45deg) !important;
+  }
+  .mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0 !important;
+    transform: scaleX(0) !important;
+  }
+  .mobile-menu-btn.active span:nth-child(3) {
+    width: 22px !important;
+    transform: translateY(-7px) rotate(-45deg) !important;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     MOBILE MENU OVERLAY
+  ───────────────────────────────────────────────────────── */
+  .nav-links {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    background-color: var(--bg-color) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0 !important;
+    transform: translateY(-100%) !important;
+    transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+                opacity 0.4s ease,
+                visibility 0s linear 0.7s !important;
+    z-index: 1001 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    overflow: hidden !important;
+  }
+
+  .nav-links.active {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+                opacity 0.4s ease,
+                visibility 0s linear 0s !important;
+  }
+
+  /* Staggered nav link entrance */
+  .nav-links .nav-link {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .nav-links.active .nav-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .nav-links.active .nav-link:nth-child(1) { transition-delay: 0.15s; }
+  .nav-links.active .nav-link:nth-child(2) { transition-delay: 0.2s; }
+  .nav-links.active .nav-link:nth-child(3) { transition-delay: 0.25s; }
+  .nav-links.active .nav-link:nth-child(4) { transition-delay: 0.3s; }
+  .nav-links.active .nav-link:nth-child(5) { transition-delay: 0.35s; }
+  .nav-links.active .nav-link:nth-child(6) { transition-delay: 0.4s; }
+
+  /* Contact Us button inside menu */
+  .nav-links .nav-link.btn {
+    background-color: var(--accent-color) !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 1rem 2rem !important;
+    border-radius: 8px !important;
+    margin-top: 1rem !important;
+  }
+
+  .nav-link {
+    font-size: clamp(1.8rem, 8vw, 2.8rem) !important;
+    font-weight: 700 !important;
+    color: var(--text-color) !important;
+    text-decoration: none !important;
+    padding: 0.75rem 2rem !important;
+    width: 100% !important;
+    text-align: center !important;
+    letter-spacing: -0.01em !important;
+    transition: color 0.3s ease, opacity 0.3s ease !important;
+    position: relative !important;
+  }
+  .nav-link:hover {
+    opacity: 0.6 !important;
+  }
+
+  .nav-link.btn {
+    margin-top: 1.5rem !important;
+    font-size: 1rem !important;
+    padding: 0.875rem 2.5rem !important;
+    border-radius: 100px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    min-width: 160px !important;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     AI SECTION — fix the wave / text overlap on mobile
+     On desktop: heading is absolute top-left, para is absolute bottom-right
+     On mobile: convert to normal stacked flow layout
+  ───────────────────────────────────────────────────────── */
+  #ai-section {
+    /* Override desktop absolute-positioned layout */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    min-height: auto !important;
+    padding: 12vh 0 10vh !important;
+    overflow: hidden !important;
+    position: relative !important;
+    gap: 0 !important;
+  }
+
+  /* The heading — used to be position:absolute top-left */
+  #ai-section > div[style*="position: absolute"][style*="top"] {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 6vw !important;
+    z-index: 2 !important;
+    margin-bottom: 3rem !important; /* clear gap from wave & paragraph */
+  }
+
+  /* The paragraph — used to be position:absolute bottom-right */
+  #ai-section > div[style*="position: absolute"][style*="bottom"] {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    text-align: left !important;
+    padding: 0 6vw !important;
+    z-index: 2 !important;
+    margin-top: 2rem !important;
+  }
+
+  /* The SVG wave background stays full-bleed behind content */
+  #ai-section > div[style*="position: absolute"][style*="z-index: 1"] {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+  }
+
+  /* Ensure heading text in the AI section is readable & has proper spacing */
+  #ai-section .heading-spartan {
+    font-size: clamp(1.8rem, 8vw, 3.5rem) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Paragraph inside AI section */
+  #ai-section p {
+    font-size: clamp(0.95rem, 3.8vw, 1.2rem) !important;
+    line-height: 1.65 !important;
+    color: var(--text-color) !important;
+  }
+}
+
+/* ── MOBILE ONLY (max-width: 767px) ──────────────────────── */
+@media (max-width: 767px) {
+
+  /* Hero section — reduce padding for breathing room */
+  #hero-section {
+    padding-top: 18vh !important;
+    min-height: 100svh !important; /* svh = small viewport height — correct on mobile */
+  }
+
+  /* Hero heading */
+  .heading-coliner {
+    font-size: clamp(4.5rem, 22vw, 9rem) !important;
+    line-height: 0.88 !important;
+  }
+
+  /* Hero buttons: full-width stacked */
+  .hero-title .btn-container,
+  .hero-title > div {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+    width: 100% !important;
+  }
+  .hero-title .btn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+    border-radius: 100px !important;
+    min-height: 52px !important;
+  }
+
+  /* Nav link size for small phones */
+  .nav-link {
+    font-size: clamp(1.5rem, 7vw, 2.2rem) !important;
+    padding: 0.6rem 2rem !important;
+  }
+
+  /* === TEAM SECTION === */
+  #team-image-container {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+    gap: 0 !important;
+  }
+
+  #team-image-container > div[style*="linear-gradient"] {
+    display: none !important;
+  }
+
+  .team-overlay-left,
+  .team-overlay-right {
+    position: static !important;
+    text-align: left !important;
+    max-width: 100% !important;
+    padding: 2rem 5vw !important;
+    background: var(--bg-color) !important;
+    width: 100% !important;
+  }
+
+  .team-overlay-left h3,
+  .team-overlay-right h3 {
+    font-size: clamp(1.8rem, 7vw, 3rem) !important;
+    color: var(--text-color) !important;
+  }
+
+  /* === CARDS === */
+  .card,
+  [class*="card"] {
+    overflow: hidden !important;
+    border-radius: 12px !important;
+  }
+
+  /* === IMAGES === */
+  .section img {
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* === HORIZONTAL SCROLLERS === */
+  [class*="scroll"],
+  [class*="marquee"] {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* === STATS === */
+  .stat-number,
+  .counter {
+    font-size: clamp(3rem, 15vw, 6rem) !important;
+  }
+
+  /* === SERVICE CARDS GRID === */
+  .services-grid,
+  .work-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* === PROCESS / STEP ITEMS === */
+  .process-item,
+  .step-item {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  /* === CTA SECTIONS === */
+  .cta-section h2,
+  .cta h2 {
+    font-size: clamp(2rem, 10vw, 3.5rem) !important;
+  }
+
+  /* === TESTIMONIALS === */
+  .testimonial-card {
+    padding: 1.5rem !important;
+  }
+  .testimonial-card p {
+    font-size: clamp(1rem, 3.5vw, 1.2rem) !important;
+  }
+
+  /* === PRICING CARDS === */
+  .pricing-card {
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* === BLOG CARDS === */
+  .blog-card-img {
+    height: 220px !important;
+    object-fit: cover !important;
+  }
+
+  /* === AI SECTION on small phones — extra spacing === */
+  #ai-section {
+    padding: 10vh 0 8vh !important;
+  }
+
+  #ai-section > div[style*="position: absolute"][style*="top"] {
+    margin-bottom: 2.5rem !important;
+  }
+
+  /* === SERVICE ROWS on mobile — let them breathe === */
+  .service-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+
+  .service-row > div {
+    width: 100% !important;
+  }
+
+  .service-row > span:last-child {
+    white-space: normal !important;
+    margin-left: 0 !important;
+  }
+
+  /* === FEATURED WORK — stack vertically === */
+  #case-left,
+  #case-right {
+    grid-column: span 12 !important;
+  }
+
+  /* === FOOTER SOCIALS — fix horizontal overflow === */
+  .footer-grid > div:last-child {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    justify-content: flex-start !important;
+  }
+
+  .footer-grid > div:last-child > div {
+    gap: 0.75rem !important;
+  }
+}
+
+/* ── SMALL PHONES (max-width: 480px) ─────────────────────── */
+@media (max-width: 480px) {
+  .section {
+    padding: 8vh 0 !important;
+  }
+  .container {
+    padding: 0 5vw !important;
+  }
+  .heading-impact {
+    font-size: clamp(2.4rem, 13vw, 4rem) !important;
+    letter-spacing: -0.03em !important;
+  }
+  .footer-huge {
+    font-size: clamp(2.5rem, 13vw, 5rem) !important;
+  }
+  /* Stacked CTA buttons on very small screens */
+  .btn-group,
+  .btn-container {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+  }
+  .btn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* Hero section padding for very small phones */
+  #hero-section {
+    padding-top: 15vh !important;
+  }
+
+  .heading-coliner {
+    font-size: clamp(4rem, 21vw, 8rem) !important;
+  }
+}
+
+/* ── SAFE AREA INSETS (iPhone notch / Dynamic Island) ──────── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .navbar {
+    padding-top: max(1.25rem, env(safe-area-inset-top)) !important;
+  }
+  footer,
+  .footer,
+  .site-footer {
+    padding-bottom: max(3rem, calc(2rem + env(safe-area-inset-bottom))) !important;
+  }
+  .premium-floating-dock {
+    bottom: max(20px, calc(16px + env(safe-area-inset-bottom))) !important;
+  }
+}
+
+/* ── TOUCH OPTIMIZATIONS ───────────────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  /* All interactive elements have generous touch targets */
+  a, button, [role="button"], .btn, .nav-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Disable hover-only effects that feel broken on mobile */
+  .premium-dock-tooltip {
+    display: none !important;
+  }
+
+  /* Simplify dock buttons for touch */
+  .premium-floating-dock {
+    gap: 10px !important;
+  }
+  .premium-dock-item {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  /* Disable hover animations on nav/footer char splits — not needed on touch */
+  .nav-link .nav-char,
+  .footer-link .footer-char {
+    transition: none !important;
+  }
+}
+
+/* ── REDUCED MOTION ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── LANDSCAPE PHONES ─────────────────────────────────────── */
+@media (max-width: 900px) and (orientation: landscape) {
+  .nav-links {
+    padding-top: 5vh !important;
+    justify-content: flex-start !important;
+    overflow-y: auto !important;
+    gap: 0 !important;
+  }
+  .nav-link {
+    font-size: clamp(1.2rem, 4vh, 1.8rem) !important;
+    padding: 0.5rem 2rem !important;
+  }
+  .hero-title {
+    padding-top: 10vh !important;
+  }
+  /* AI section in landscape — keep more compact */
+  #ai-section {
+    padding: 8vh 0 6vh !important;
+  }
+}
