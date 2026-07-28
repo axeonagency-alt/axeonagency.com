@@ -1,0 +1,91 @@
+/* Minimalist Contact Dock */
+
+.minimal-contact-dock {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  z-index: 9999;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Contact Trigger */
+.contact-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: #ffffff;
+  transition: opacity 0.3s ease;
+}
+
+body.theme-dark .contact-trigger,
+.section-blue .contact-trigger {
+  color: #ffffff;
+}
+
+.trigger-text {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.spinning-symbol {
+  font-size: 1.2rem;
+  display: inline-block;
+  animation: spin 8s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hidden Links that reveal on hover */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 8px;
+}
+
+.minimal-contact-dock:hover .contact-links {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.minimal-link {
+  text-decoration: none;
+  color: #002bba;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: 1px solid rgba(0, 43, 186, 0.2);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.minimal-link:hover {
+  background: #002bba;
+  color: #ffffff;
+  border-color: #002bba;
+}
+
+@media (max-width: 768px) {
+  .minimal-contact-dock {
+    bottom: 24px;
+    right: 24px;
+  }
+}
